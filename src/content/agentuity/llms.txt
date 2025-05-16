@@ -31,184 +31,7 @@ When interacting with this documentation:
 5. Examples & Tutorials - Sample projects, step-by-step tutorials, and implementation guides
 6. Troubleshooting - Common issues and solutions
 
-file: ./content/Introduction/index.mdx
-meta: {
-  "title": "Agentuity"
-}
-
-Agentuity is a cloud platform designed specifically for building, deploying, and scaling 
-autonomous AI agents. It provides the infrastructure and tools necessary to manage agents 
-built with any framework, such as CrewAI, LangChain, or custom code.
-
-With Agentuity, you can:
-- Deploy agents with a single command
-- Monitor real-time performance and analytics
-- Scale agents effortlessly
-- Connect agents to various channels (API, chat, webhooks, email, SMS, voice)
-- Use any AI agent framework
-
-## Getting Started
-
-import { Step, Steps } from 'fumadocs-ui/components/steps';
-
-<Steps>
-<Step>
-### Create an Account
-[Create an Agentuity account](https://app.agentuity.com/sign-up) or [Sign in](https://app.agentuity.com/sign-in) to the cloud portal.
-</Step>
-
-<Step>
-### Install the CLI
-
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-
-<Tabs items={['macOS', 'Linux / Windows (WSL)']}>
-  <Tab>
-    ```bash
-    brew tap agentuity/tap && brew install agentuity
-    ```
-  </Tab>
-  <Tab>
-    1. Visit the [Agentuity CLI releases page](https://github.com/agentuity/cli/releases)
-    2. Download the appropriate version for your operating system
-    3. Extract the downloaded file
-    4. Add the executable to your system PATH
-  </Tab>
-</Tabs>
-</Step>
-
-<Step>
-### Login to Agentuity
-```bash
-agentuity login
-```
-</Step>
-
-<Step>
-### Create Your First Project
-```bash
-agentuity create project my-project
-cd my-project
-```
-</Step>
-
-<Step>
-### Deploy Your Project
-```bash
-agentuity deploy
-```
-</Step>
-</Steps>
-
-## Documentation Sections
-
-<Cards>
-  <Card
-    title="Cloud & Account"
-    href="/Cloud/"
-    description="Learn about Agentuity Cloud features, account management, and general platform information."
-  />
-  <Card
-    title="Command Line Interface"
-    href="/CLI/installation"
-    description="Get started with the Agentuity CLI for managing your agents and deployments from the terminal."
-  />
-  <Card
-    title="Examples & Tutorials"
-    href="/Examples/"
-    description="Explore sample projects, step-by-step tutorials, and implementation guides."
-  />
-  <Card
-    title="SDKs & Integration"
-    href="/SDKs"
-    description="Integrate Agentuity Cloud into your applications using our SDKs and APIs."
-  />
-</Cards>
-
-## Need Help?
-
-Join our [Community Discord](https://discord.com/invite/vtn3hgUfuc) for assistance.
-
-
-file: ./content/Introduction/architecture.mdx
-meta: {
-  "title": "Architecture Overview",
-  "description": "Understanding Agentuity's system architecture, components, and integration points"
-}
-
-## System Architecture
-
-Agentuity is a cloud platform designed to run and scale AI agents with enterprise-grade reliability. 
-Our architecture follows a container-based approach, where each agent operates in its own specialized 
-environment.
-
-Unlike traditional serverless platforms, Agentuity ensures containers run for as long as agents need, 
-maintaining state and context throughout agent lifecycles. This long-running container approach is 
-optimal for complex AI workloads that may require extended processing time.
-
-The platform is fundamentally cross-platform, allowing you to run different agent frameworks 
-(CrewAI, Langchain, custom agents) side by side in the same ecosystem, with built-in communication 
-channels between them.
-
-## Core Components
-
-Agentuity consists of four primary components:
-
-1. **Container Runtime** - The execution environment where your agents run, providing:
-   - Isolated, secure container environments for each agent
-   - Automatic scaling based on workload
-   - Resource management and optimization
-   - Long-running container support for persistent agents
-
-2. **Command Line Interface (CLI)** - A developer tool that enables:
-   - Quick agent creation and initialization
-   - Local development and testing
-   - Deployment management to the Agentuity cloud
-   - Agent monitoring and troubleshooting
-
-3. **Software Development Kits (SDKs)** - Libraries that provide:
-   - Agent-native tools and services
-   - Runtime-specific optimizations for Python and JavaScript (Node and Bun)
-   - Integration capabilities with external systems
-   - Enhanced agent capabilities and extensions
-
-4. **Web Console** - A management interface offering:
-   - Real-time agent monitoring and metrics
-   - Deployment and configuration management
-   - Usage analytics and performance insights
-   - Team collaboration features
-
-## Data Flow
-
-Agent communication and data flow in Agentuity follow secure, encrypted channels:
-
-1. **Agent-to-Agent Communication** - Agents can communicate with each other through encrypted routing, 
-regardless of the underlying frameworks used.
-
-2. **External Integrations** - Agents can connect to external systems and data sources through managed 
-integration points.
-
-3. **Deployment Pipeline** - Your project code is packaged, containerized, and deployed to the Agentuity 
-cloud infrastructure with appropriate networking and routing configured automatically.
-
-## Scalability
-
-Agentuity is designed for enterprise-scale agent deployments:
-
-- **Horizontal Scaling** - Automatically provision additional resources as demand increases
-- **Framework Agnostic** - Scale any type of agent regardless of the underlying framework
-- **Load Balancing** - Distribute agent workloads efficiently across available resources
-- **Resource Optimization** - Intelligently allocate compute resources based on agent requirements
-
-## Security Architecture
-
-Security is foundational to Agentuity's design:
-
-- **Container Isolation** - Each agent operates in its own isolated environment
-- **Encrypted Communications** - All agent-to-agent communication is encrypted
-- **Secure Deployment** - Protected deployment pipeline from development to production
-
-file: ./content/CLI/agent.mdx
+file: CLI/agent.mdx
 meta: {
   "title": "Agent Commands",
   "description": "Commands for managing agents in your Agentuity project"
@@ -378,7 +201,96 @@ These flags apply to all agent commands:
 - `--log-level string` - The log level to use (default "info")
 
 
-file: ./content/CLI/auth.mdx
+file: CLI/apikey.mdx
+meta: {
+  "title": "API Key Commands",
+  "description": "Managing API keys with the Agentuity CLI"
+}
+
+## Overview
+
+The Agentuity CLI provides commands to manage API keys for authentication with the Agentuity Cloud Platform.
+
+## Commands
+
+### apikey
+
+Base command for API key management.
+
+```bash
+agentuity apikey
+```
+
+**Aliases:** `apikeys`
+
+**Examples:**
+```bash
+agentuity apikey list
+agentuity apikey create
+```
+
+### apikey create
+
+Creates a new API key for use with the Agentuity Cloud Platform.
+
+```bash
+agentuity apikey create
+```
+
+**Aliases:** None
+
+**Examples:**
+```bash
+agentuity apikey create
+```
+
+### apikey delete
+
+Deletes an existing API key.
+
+```bash
+agentuity apikey delete
+```
+
+**Aliases:** None
+
+**Examples:**
+```bash
+agentuity apikey delete
+```
+
+### apikey get
+
+Retrieves information about a specific API key.
+
+```bash
+agentuity apikey get
+```
+
+**Aliases:** None
+
+**Examples:**
+```bash
+agentuity apikey get
+```
+
+### apikey list
+
+Lists all available API keys for your account.
+
+```bash
+agentuity apikey list
+```
+
+**Aliases:** None
+
+**Examples:**
+```bash
+agentuity apikey list
+```
+
+
+file: CLI/auth.mdx
 meta: {
   "title": "Authentication Commands",
   "description": "Commands for authenticating with the Agentuity Cloud Platform"
@@ -462,7 +374,7 @@ $ agentuity auth whoami
 ```
 
 
-file: ./content/CLI/bundle.mdx
+file: CLI/bundle.mdx
 meta: {
   "title": "Bundle Command",
   "description": "Command for bundling Agentuity projects for deployment"
@@ -494,7 +406,7 @@ agentuity bundle [flags]
 
 > You generally don't need to use this command as it is automatically called when you run `agentuity dev` or `agentuity start`.
 
-file: ./content/CLI/cloud.mdx
+file: CLI/cloud.mdx
 meta: {
   "title": "Cloud Commands",
   "description": "Commands for deploying and managing projects in the Agentuity Cloud Platform"
@@ -570,7 +482,7 @@ URL: https://app.agentuity.com/projects/proj_123456
 ```
 
 
-file: ./content/CLI/dev.mdx
+file: CLI/dev.mdx
 meta: {
   "title": "Development Commands",
   "description": "Commands for local development of Agentuity projects"
@@ -578,18 +490,18 @@ meta: {
 
 The `dev` commands allow you to run and test your Agentuity projects locally during development.
 
-## dev run
+## dev
 
 Runs a development server for local testing and development.
 
 ### Aliases
 
-`agentuity run` (shortcut for `agentuity dev run`)
+`agentuity run` (shortcut for `agentuity dev`)
 
 ### Usage
 
 ```bash
-agentuity dev run [flags]
+agentuity dev [flags]
 ```
 
 ### Flags
@@ -603,28 +515,28 @@ agentuity dev run [flags]
 
 Run a development server for a project in the current directory:
 ```bash
-$ agentuity dev run
+$ agentuity dev
 ✓ Development server started
 🔗 Local URL: http://localhost:3000
 ```
 
 Run a development server for a project in a specific directory:
 ```bash
-$ agentuity dev run --dir ~/projects/my-project
+$ agentuity dev --dir ~/projects/my-project
 ✓ Development server started
 🔗 Local URL: http://localhost:3000
 ```
 
 Run a development server with a specific WebSocket room ID:
 ```bash
-$ agentuity dev run --websocket-id room_123456
+$ agentuity dev --websocket-id room_123456
 ✓ Development server started
 🔗 Local URL: http://localhost:3000
 🔌 WebSocket connected: room_123456
 ```
 
 
-file: ./content/CLI/env.mdx
+file: CLI/env.mdx
 meta: {
   "title": "Environment Commands",
   "description": "Commands for managing environment variables and secrets in Agentuity projects"
@@ -773,7 +685,7 @@ $ agentuity env delete API_KEY DB_PASSWORD
 ```
 
 
-file: ./content/CLI/installation.mdx
+file: CLI/installation.mdx
 meta: {
   "title": "Installation",
   "description": "Installation of Agentuity CLI"
@@ -783,46 +695,55 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## Installation
 
-<Tabs items={['macOS', 'Linux / Windows (WSL)']}>
+<Tabs items={['macOS', 'Linux', 'Windows (WSL)']}>
   <Tab>
-    ### macOS Installation with Brew
+    ### macOS Installation
 
     ```bash
-    brew tap agentuity/tap && brew install agentuity
+    curl -fsS https://agentuity.sh | sh
     ```
 
     ### Upgrading on macOS
 
-    To upgrade to the latest version of the Agentuity CLI using Brew:
+    To upgrade to the latest version of the Agentuity CLI:
 
     ```bash
-    brew update && brew upgrade agentuity
+    agentuity upgrade
     ```
   </Tab>
   <Tab>
-    ### Linux / Windows (WSL) Installation
-
-    For Linux or Windows (WSL), you need to manually install the Agentuity CLI:
-
-    1. Visit the [Agentuity CLI releases page](https://github.com/agentuity/cli/releases)
-    2. Download the appropriate version for your operating system
-    3. Extract the downloaded file
-    4. Add the executable to your system PATH
-
-    For example, on Linux you might use:
+    ### Linux Installation
 
     ```bash
-    # Download the latest release (replace X.X.X with the version number)
-    curl -L https://github.com/agentuity/cli/releases/download/vX.X.X/agentuity-linux-amd64.tar.gz -o agentuity.tar.gz
+    curl -fsS https://agentuity.sh | sh
+    ```
 
-    # Extract the archive
-    tar -xzf agentuity.tar.gz
+    ### Upgrading on Linux
 
-    # Move the binary to a location in your PATH
-    sudo mv agentuity /usr/local/bin/
+    To upgrade to the latest version of the Agentuity CLI:
 
-    # Verify the installation
-    agentuity --version
+    ```bash
+    agentuity upgrade
+    ```
+  </Tab>
+  <Tab>
+    ### Windows (WSL) Installation
+
+    <Callout type="warning">
+      The install script for Windows only works in the <strong>WSL (Windows Subsystem for Linux)</strong> environment.<br/>
+      <strong>There is currently no support for a native Windows installer.</strong>
+    </Callout>
+
+    ```bash
+    curl -fsS https://agentuity.sh | sh
+    ```
+
+    ### Upgrading on Windows (WSL)
+
+    To upgrade to the latest version of the Agentuity CLI:
+
+    ```bash
+    agentuity upgrade
     ```
   </Tab>
 </Tabs>
@@ -840,8 +761,170 @@ You can also manually download and install the Agentuity CLI from the [GitHub re
 
 The source code for the Agentuity CLI is available on [GitHub](https://github.com/agentuity/cli).
 
+## Shell Completions
 
-file: ./content/CLI/project.mdx
+The Agentuity CLI provides shell completions for bash, zsh, fish, and PowerShell. These can help make your command line experience more efficient by providing tab-completion for commands and options.
+
+### Automatic Setup
+
+When you install the CLI using the installer scripts, completions are automatically set up for:
+- **Bash and Zsh** on macOS and Linux (when you have write permissions to the completion directories)
+
+### Manual Setup
+
+You can manually set up completions for any supported shell using the `agentuity completion` command.
+
+<Tabs items={['Bash', 'Zsh', 'Fish']}>
+  <Tab>
+    To load completions in your current bash session:
+
+    ```bash
+    source <(agentuity completion bash)
+    ```
+
+    To load completions for every new session:
+
+    For Linux:
+    ```bash
+    agentuity completion bash > /etc/bash_completion.d/agentuity
+    ```
+
+    For macOS:
+    ```bash
+    agentuity completion bash > $(brew --prefix)/etc/bash_completion.d/agentuity
+    ```
+
+    Note: This depends on the `bash-completion` package. If not already installed, you can install it via your OS's package manager.
+  </Tab>
+  <Tab>
+    To load completions in your current zsh session:
+
+    ```bash
+    source <(agentuity completion zsh)
+    ```
+
+    To load completions for every new session:
+
+    For Linux:
+    ```bash
+    agentuity completion zsh > "${fpath[1]}/_agentuity"
+    ```
+
+    For macOS:
+    ```bash
+    agentuity completion zsh > $(brew --prefix)/share/zsh/site-functions/_agentuity
+    ```
+
+    If shell completion is not already enabled in your environment, you need to enable it:
+
+    ```bash
+    echo "autoload -U compinit; compinit" >> ~/.zshrc
+    ```
+  </Tab>
+  <Tab>
+    To load completions in your current fish session:
+
+    ```bash
+    agentuity completion fish | source
+    ```
+
+    To load completions for every new session:
+
+    ```bash
+    agentuity completion fish > ~/.config/fish/completions/agentuity.fish
+    ```
+  </Tab>
+</Tabs>
+
+
+file: CLI/mcp.mdx
+meta: {
+  "title": "MCP Commands",
+  "description": "Documentation for the Model Context Protocol (MCP) integration in Agentuity CLI"
+}
+
+## Overview
+
+The Agentuity CLI implements the Model Context Protocol (MCP), which allows integration with AI-powered code editors and tools. This integration enhances the capabilities of AI agents inside supported clients.
+
+For more information on the MCP protocol, see [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/)
+
+## Commands
+
+### mcp
+
+The base command for all MCP-related operations.
+
+```bash
+agentuity mcp
+```
+
+**Aliases:** None
+
+**Examples:**
+```bash
+agentuity mcp install
+agentuity mcp uninstall
+agentuity mcp list
+```
+
+### mcp install
+
+Installs the Agentuity CLI as an MCP server, enabling integration with supported MCP clients.
+
+```bash
+agentuity mcp install
+```
+
+**Aliases:** `i`, `add`
+
+**Examples:**
+```bash
+agentuity mcp install
+```
+
+### mcp uninstall
+
+Uninstalls the Agentuity CLI as an MCP server, removing integration with MCP clients.
+
+```bash
+agentuity mcp uninstall
+```
+
+**Aliases:** `rm`, `delete`, `del`, `remove`
+
+**Examples:**
+```bash
+agentuity mcp uninstall
+```
+
+### mcp list
+
+Lists all MCP server configurations detected on the machine, showing which clients are configured.
+
+```bash
+agentuity mcp list
+```
+
+**Aliases:** `ls`
+
+**Examples:**
+```bash
+agentuity mcp list
+```
+
+## Manual Installation
+
+If you need to manually configure an MCP client, you can use the following command:
+
+```bash
+agentuity mcp run --stdio
+```
+
+This command is typically used for advanced configuration scenarios.
+
+
+file: CLI/project.mdx
 meta: {
   "title": "Project Commands",
   "description": "Commands for creating and managing Agentuity projects"
@@ -973,36 +1056,14 @@ $ agentuity project import --dir ./my-existing-project
 ✓ Project imported successfully
 ```
 
-## project init
 
-Initializes an existing directory as an Agentuity project.
-
-### Aliases
-
-`agentuity init` (shortcut for `agentuity project init`)
-
-### Usage
-
-```bash
-agentuity project init [directory]
-```
-
-### Examples
-
-Initialize the current directory as an Agentuity project:
-```bash
-$ agentuity project init .
-✓ Project initialized successfully
-```
-
-
-file: ./content/CLI/version.mdx
+file: CLI/version.mdx
 meta: {
   "title": "Version Command",
   "description": "Command for checking the version of the Agentuity CLI"
 }
 
-The `version` command allows you to check the version of the Agentuity CLI that you have installed.
+The `version` command allows you to check, display, and upgrade the Agentuity CLI version.
 
 ## version
 
@@ -1040,84 +1101,75 @@ Commit: abc123
 Date: 2025-02-27
 ```
 
+## check
 
-file: ./content/SDKs/index.mdx
-meta: {
-  "title": "SDKs",
-  "description": "Agentuity SDKs"
-}
+Checks if you're using the latest version of the Agentuity CLI.
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', padding: '1rem' }}>
-  <Card href="/SDKs/python">
-    <h3>Python SDK</h3>
-    <p>Build AI Agents with our Python SDK</p>
-  </Card>
-  
-  <Card href="/SDKs/javascript">
-    <h3>JavaScript SDK</h3>
-    <p>Build AI Agents using our JavaScript/TypeScript SDK</p>
-  </Card>
-</div>
+### Usage
 
+```bash
+agentuity version check [flags]
+```
 
-file: ./content/Examples/index.mdx
-meta: {
-  "title": "Examples",
-  "description": "Examples"
-}
+### Flags
 
-While our comprehensive examples documentation is coming soon, you can explore our GitHub repository where we maintain a collection of reference implementations.
+| Flag | Description |
+| ---- | ----------- |
+| `--upgrade` | Upgrade to the latest version if a newer version is available |
 
-<div className="mt-8 mb-8">
-  <a 
-    href="https://github.com/agentuity/examples" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-8"
-  >
-    <svg className="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-    View Examples on GitHub
-  </a>
-</div>
+### Examples
 
-## SDK Examples
+Check if you're using the latest version:
+```bash
+$ agentuity version check
+You are using the latest version (1.0.0) of the Agentuity CLI.
+```
 
-We provide comprehensive examples for our SDKs to help you get started with building agents using Agentuity.
+Check and upgrade to the latest version:
+```bash
+$ agentuity version check --upgrade
+A new version (1.1.0) of the Agentuity CLI is available. Upgrading...
+Successfully upgraded to version 1.1.0.
+```
 
-### JavaScript SDK Examples
+## upgrade
 
-Our JavaScript SDK examples demonstrate how to build agents using JavaScript:
+Upgrades the Agentuity CLI to the latest version. This command is also available as `agentuity upgrade`.
 
-<div className="mt-4 mb-4">
-  <a 
-    href="/SDKs/javascript/examples" 
-    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-  >
-    View JavaScript SDK Examples
-  </a>
-</div>
+### Usage
 
-### Python SDK Examples
+```bash
+agentuity version upgrade [flags]
+```
 
-Our Python SDK examples demonstrate how to build agents using Python:
+### Flags
 
-<div className="mt-4 mb-4">
-  <a 
-    href="/SDKs/python/examples" 
-    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-  >
-    View Python SDK Examples
-  </a>
-</div>
+| Flag | Description |
+| ---- | ----------- |
+| `--force` | Force upgrade even if already on the latest version |
 
-## What You'll Find in the Repository
+### Examples
 
-The repository contains reference implementations demonstrating how to build and deploy agents using the Agentuity platform. These examples are designed to help you get started and provide code that you can use, copy, or adapt for your own projects.
+Upgrade to the latest version:
+```bash
+$ agentuity version upgrade
+Checking for updates...
+A new version (1.1.0) is available. Upgrading...
+Creating backup of current binary...
+Successfully upgraded to version 1.1.0.
+```
 
-> **Note:** The repository is under active development. Check back regularly for updates and new examples.
+Force upgrade:
+```bash
+$ agentuity version upgrade --force
+Creating backup of current binary...
+Successfully upgraded to version 1.1.0.
+```
+
+On macOS, if the CLI was installed using Homebrew, it will use Homebrew to perform the upgrade.
 
 
-file: ./content/Changelog/cli.mdx
+file: Changelog/cli.mdx
 meta: {
   "title": "CLI Changelog",
   "description": "Release notes and version history for the Agentuity CLI"
@@ -1126,6 +1178,392 @@ meta: {
 import { Callout } from 'fumadocs-ui/components/callout';
 
 This page documents the release history of the [Agentuity CLI](https://github.com/agentuity/cli).
+
+## v0.0.120
+
+<Callout type="info">
+  Released: May 14, 2025
+</Callout>
+
+**Changes:**
+- **Added**: Add project key for agent comms ([#285](https://github.com/agentuity/cli/pull/285))
+- **Changed**: Shorten install script, skip prebuilds on breaking change check ([#287](https://github.com/agentuity/cli/pull/287))
+- **Changed**: Cleanup: remove old vscode settings, move release to use blacksmith now that we dont need MSI build ([#289](https://github.com/agentuity/cli/pull/289))
+- **Changed**: Update copy in upgrade.go for upgrade
+- **Fixed**: [AGENT-163] Update command for Windows ([#284](https://github.com/agentuity/cli/pull/284))
+- **Documentation**: Update changelog for v0.0.119 ([#283](https://github.com/agentuity/cli/pull/283))
+
+**⚠️ Breaking Changes**
+
+This version includes breaking changes that require updates to your JavaScript and Python SDKs:
+
+- **JavaScript SDK**: Update to v0.0.115 or later for compatibility with the new agent communications protocol. See the [JavaScript SDK Changelog](https://agentuity.dev/Changelog/sdk-js#v00115) for upgrade instructions.
+- **Python SDK**: Update to v0.0.84 or later to support the new project key feature. See the [Python SDK Changelog](https://agentuity.dev/Changelog/sdk-py#v0084) for upgrade instructions.
+
+If you're using an Agentic code editor (such as Cursor, Windsurf, etc.), you can use this prompt to update your code with these changes:
+
+```
+The Agentuity SDK v0.0.115 has renamed AGENTUITY_API_KEY to AGENTUITY_SDK_KEY.
+Please find all instances of AGENTUITY_API_KEY in my code and replace them with AGENTUITY_SDK_KEY.
+```
+
+## v0.0.119
+
+<Callout type="info">
+  Released: May 8, 2025
+</Callout>
+
+**Changes:**
+- **Added**: Added path completion to the CLI ([#282](https://github.com/agentuity/cli/pull/282))
+- **Changed**: Cleanup install script ([#281](https://github.com/agentuity/cli/pull/281))
+  - Removed Windows native support (WSL is now recommended)
+  - Improved installation testing with Docker
+  - Restructured installation script for better maintainability
+
+## v0.0.118
+
+<Callout type="info">
+  Released: May 6, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fixed check on dev for Linux by using `sys.IsRunningInsideDocker()` instead of checking for specific Docker files ([#279](https://github.com/agentuity/cli/pull/279))
+
+## v0.0.117
+
+<Callout type="info">
+  Released: May 5, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fixed typo in CI flag name (changed "ci-messsage" to "ci-message") ([#277](https://github.com/agentuity/cli/pull/277))
+
+## v0.0.116
+
+<Callout type="info">
+  Released: May 5, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Missed annotation on GitInfo ([#275](https://github.com/agentuity/cli/pull/275))
+- **Fixed**: AGENT-29 Check mask value for secrets ([#274](https://github.com/agentuity/cli/pull/274))
+- **Fixed**: Passing CI logs URL to display GitHub action logs in the UI ([#273](https://github.com/agentuity/cli/pull/273))
+- **Changed**: Taking a walk to get the git data 🚶‍♂️‍➡️ ([#272](https://github.com/agentuity/cli/pull/272))
+- **Changed**: Pass on the git info from deploy to bundle when for --deploy ([#271](https://github.com/agentuity/cli/pull/271))
+
+## v0.0.115
+
+<Callout type="info">
+  Released: May 2, 2025
+</Callout>
+
+**Changes:**
+- **Added**: Added mono repofix ([#267](https://github.com/agentuity/cli/pull/267))
+- **Changed**: Add flags for deployment data overwrite from github action ([#266](https://github.com/agentuity/cli/pull/266))
+- **Fixed**: Allow non-admin users to uninstall CLI without admin privileges ([#264](https://github.com/agentuity/cli/pull/264))
+
+## v0.0.114
+
+<Callout type="info">
+  Released: May 1, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Don't call close handler if conn is nil ([#255](https://github.com/agentuity/cli/pull/255))
+- **Fixed**: Fix 'text file busy' error during CLI updates ([#254](https://github.com/agentuity/cli/pull/254))
+- **Fixed**: Windows: improve the output for windows upgrade ([#253](https://github.com/agentuity/cli/pull/253))
+- **Fixed**: Fix PowerShell installation issues in install.ps1 ([#257](https://github.com/agentuity/cli/pull/257))
+- **Fixed**: DevMode: Make sure to terminate child processes ([#259](https://github.com/agentuity/cli/pull/259))
+- **Fixed**: Don't error if deliberate restart ([#260](https://github.com/agentuity/cli/pull/260))
+- **Fixed**: Set ALLUSERS=0 for non-admin installations to ensure proper installation to AppData/Local/Agentuity ([#261](https://github.com/agentuity/cli/pull/261))
+- **Added**: Update install.sh to support /home/ubuntu/.bin and prompt for shell reload ([#258](https://github.com/agentuity/cli/pull/258))
+- **Added**: Add breaking change for new Python SDK ([#256](https://github.com/agentuity/cli/pull/256))
+
+## v0.0.113
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+**Changes:**
+- **Added**: Make sure agent create has a reference to the template so we can reference it in interpolation ([#251](https://github.com/agentuity/cli/pull/251))
+- **Changed**: DevMode: debounce hot reloads ([#250](https://github.com/agentuity/cli/pull/250))
+
+## v0.0.111
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fix PowerShell installation error with global drive ([#246](https://github.com/agentuity/cli/pull/246))
+- **Fixed**: Improve hot reload stability ([#245](https://github.com/agentuity/cli/pull/245))
+- **Fixed**: Fix Windows upgrade process to uninstall existing CLI before installation ([#244](https://github.com/agentuity/cli/pull/244))
+## v0.0.110
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: More logging and cleanup for dev server startup, more safe filename fixes for python which is stricter ([#242](https://github.com/agentuity/cli/pull/242))
+
+## v0.0.109
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fix issue with windows startup for devmode ([#240](https://github.com/agentuity/cli/pull/240))
+  - Increased wait time for devmode on Windows
+  - Added more logging
+  - Fixed Windows path escape issue in agents JSON
+  - Decreased attempt duration
+
+## v0.0.108
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Only use SIGINT which is compatible with all platforms vs SIGKILL which doesn't work on Windows ([#239](https://github.com/agentuity/cli/pull/239))
+
+## v0.0.107
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: DevMode: connect to ipv4 loopback explicitly ([#237](https://github.com/agentuity/cli/pull/237))
+
+## v0.0.106
+
+<Callout type="info">
+  Released: April 26, 2025
+</Callout>
+
+**Changes:**
+- **Changed**: Use update not upgrade ([#235](https://github.com/agentuity/cli/pull/235))
+- **Changed**: Some Node libraries which have already been bundled conflict with our bundle require shim ([#233](https://github.com/agentuity/cli/pull/233))
+- **Documentation**: Update changelog for v0.0.105 ([#232](https://github.com/agentuity/cli/pull/232))
+- **Documentation**: Fix doc link
+
+## v0.0.105
+
+<Callout type="info">
+  Released: April 25, 2025
+</Callout>
+
+**Changes:**
+- **Changed**: Temporarily revert the agent rename detection ([#231](https://github.com/agentuity/cli/pull/231))
+- **Changed**: Revert "temporarily comment out the new sdk upgrade requirement until ready" ([#229](https://github.com/agentuity/cli/pull/229))
+- **Changed**: Update the dev help output to use the direct agent route instead of legacy route ([#224](https://github.com/agentuity/cli/pull/224))
+
+## v0.0.104
+
+<Callout type="info">
+  Released: April 24, 2025
+</Callout>
+
+**Changes:**
+- **Changed**: Small tweaks around help and error dialog ([#227](https://github.com/agentuity/cli/pull/227))
+- **Fixed**: Fix regression in devmode input json using new binary protocol ([#228](https://github.com/agentuity/cli/pull/228))
+- **Fixed**: Add error message for JS SDK breaking change ([#225](https://github.com/agentuity/cli/pull/225))
+- **Fixed**: Project Name uniqueness check should be within project not any project in the users org ([#223](https://github.com/agentuity/cli/pull/223))
+- **Fixed**: Add a more helpful error message when dev command cannot validate the project ([#222](https://github.com/agentuity/cli/pull/222))
+- **Fixed**: Better handling when you rename an agent and attempt to deploy ([#221](https://github.com/agentuity/cli/pull/221))
+- **Documentation**: Update changelog for v0.0.103 ([#220](https://github.com/agentuity/cli/pull/220))
+
+## v0.0.103
+
+<Callout type="info">
+  Released: April 23, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fix dev mode for new sdk ([#219](https://github.com/agentuity/cli/pull/219))
+- **Fixed**: A better error messages when trying to load a project ([#218](https://github.com/agentuity/cli/pull/218))
+
+## v0.0.102
+
+<Callout type="info">
+  Released: April 21, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Don't fail if MCP detection fails for any reason on create project ([#216](https://github.com/agentuity/cli/pull/216))
+
+## v0.0.101
+
+<Callout type="info">
+  Released: April 19, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fix unzip function to properly close file handles ([#215](https://github.com/agentuity/cli/pull/215))
+
+## v0.0.100
+
+<Callout type="info">
+  Released: April 19, 2025
+</Callout>
+
+**Changes:**
+- **Changed**: Be smart about remembering the last project ([#212](https://github.com/agentuity/cli/pull/212))
+- **Changed**: Hide websocket-id flag from CLI help text ([#211](https://github.com/agentuity/cli/pull/211))
+- **Documentation**: Update changelog for v0.0.99 ([#210](https://github.com/agentuity/cli/pull/210))
+
+## v0.0.99
+
+<Callout type="info">
+  Released: April 18, 2025
+</Callout>
+
+**Changes:**
+- **Changed**: Add a better error message on new project by using a dialog component ([#209](https://github.com/agentuity/cli/pull/209))
+
+## v0.0.98
+
+<Callout type="info">
+  Released: April 18, 2025
+</Callout>
+
+**Changes:**
+- **Changed**: Add exponential backoff for agent welcome connection with 30s max time ([#207](https://github.com/agentuity/cli/pull/207))
+
+## v0.0.97
+
+<Callout type="info">
+  Released: April 17, 2025
+</Callout>
+
+**Changes:**
+- **Fixed**: Fix issue with too many files error ([#205](https://github.com/agentuity/cli/pull/205))
+- **Fixed**: Fixed small error (55996e3)
+- **Changed**: Bump golang.org/x/net from 0.36.0 to 0.38.0 ([#204](https://github.com/agentuity/cli/pull/204))
+- **Documentation**: Update changelog for v0.0.96 ([#203](https://github.com/agentuity/cli/pull/203))
+
+## v0.0.96
+
+<Callout type="info">
+  Released: April 16, 2025
+</Callout>
+
+**Changes:**
+- Guard against conn being nil ([e095c09](https://github.com/agentuity/cli/commit/e095c09))
+- Only set step cursor on page 1 ([#202](https://github.com/agentuity/cli/pull/202))
+
+## v0.0.95
+
+<Callout type="info">
+  Released: April 16, 2025
+</Callout>
+
+### Changes
+
+- **Added**: Add retries to HTTP client ([#200](https://github.com/agentuity/cli/pull/200))
+- **Changed**: Attempt to have better UX handling of upgrade checks ([#199](https://github.com/agentuity/cli/pull/199))
+- **Changed**: Template Improvements ([#198](https://github.com/agentuity/cli/pull/198))
+- **Documentation**: Update changelog for v0.0.94 ([#197](https://github.com/agentuity/cli/pull/197))
+
+## v0.0.93
+
+<Callout type="info">
+  Released: April 16, 2025
+</Callout>
+
+### Changes
+
+- **Changed**: Improve TUI semantics ([#193](https://github.com/agentuity/cli/pull/193))
+- **Fixed**: Add more debug logging around CI bundling for github app ([#194](https://github.com/agentuity/cli/pull/194))
+- **Documentation**: Update changelog for v0.0.92 ([#192](https://github.com/agentuity/cli/pull/192))
+
+## v0.0.92
+
+<Callout type="info">
+  Released: April 15, 2025
+</Callout>
+
+### Changes
+
+- **Fixed**: Fix the Git URL to rewrite to https ([#190](https://github.com/agentuity/cli/pull/190))
+- **Changed**: Add hyperlinks to older release versions in CHANGELOG.md ([#191](https://github.com/agentuity/cli/pull/191))
+- **Changed**: Update changelog for v0.0.91 ([#189](https://github.com/agentuity/cli/pull/189))
+
+## v0.0.91
+
+<Callout type="info">
+  Released: April 14, 2025
+</Callout>
+
+### Changes
+
+- **Fixed**: Fix go-common flag issue with overriding log level from env and add more debug to bundle ([#188](https://github.com/agentuity/cli/pull/188))
+
+## v0.0.90
+
+<Callout type="info">
+  Released: April 14, 2025
+</Callout>
+
+### Changes
+
+- **Added**: Add support for managing API Keys from CLI ([#186](https://github.com/agentuity/cli/pull/186))
+- **Fixed**: Make sure we set the working directory when running the project dev command since we could be using --dir
+
+## v0.0.89
+
+<Callout type="info">
+  Released: April 10, 2025
+</Callout>
+
+### Changes
+
+- **Added**: Add CLI Signup Flow ([#182](https://github.com/agentuity/cli/pull/182))
+- **Fixed**: Fix macOS segfault during reinstallation ([#183](https://github.com/agentuity/cli/pull/183))
+- **Fixed**: Smart login or setup ([#184](https://github.com/agentuity/cli/pull/184))
+
+## v0.0.88
+
+<Callout type="info">
+  Released: April 8, 2025
+</Callout>
+
+### Changes
+
+- **Added**: Webhook instructions ([#179](https://github.com/agentuity/cli/pull/179))
+- **Changed**: Proxy GitHub public APIs ([#180](https://github.com/agentuity/cli/pull/180))
+- **Changed**: Small improvements on devmode
+- **Fixed**: Make it clear that the webhook is a POST ([#178](https://github.com/agentuity/cli/pull/178))
+- **Fixed**: If node_modules or .venv/lib directory are missing when bundling, force install ([#177](https://github.com/agentuity/cli/pull/177))
+
+## v0.0.87
+
+<Callout type="info">
+  Released: April 8, 2025
+</Callout>
+
+### Changes
+
+- **Fixed**: Fix regression in step 2 (new project) related to cursor selection ([234b330](https://github.com/agentuity/cli/commit/234b3307d1fd96005d4f656ab319d438e7b60626))
+
+## v0.0.86
+
+<Callout type="info">
+  Released: April 7, 2025
+</Callout>
+
+### Changes
+
+- **Added**: Add Clone Repo step ([#171](https://github.com/agentuity/cli/pull/171))
+- **Added**: Add Agent Welcome on DevMode ([#172](https://github.com/agentuity/cli/pull/172))
+- **Changed**: Totally re-write the TUI for the new project ([#170](https://github.com/agentuity/cli/pull/170))
+- **Changed**: Better upgrade handling ([#174](https://github.com/agentuity/cli/pull/174))
+- **Fixed**: Fix crewai installation issue (exit status 130) ([#169](https://github.com/agentuity/cli/pull/169))
+- **Fixed**: Make sure command is executed with a context ([#173](https://github.com/agentuity/cli/pull/173))
 
 ## v0.0.74
 
@@ -1419,7 +1857,7 @@ This page documents the release history of the [Agentuity CLI](https://github.co
 - Updated Python template to import `autostart` from the main package
 
 
-file: ./content/Changelog/index.mdx
+file: Changelog/index.mdx
 meta: {
   "title": "Changelog",
   "description": "Release notes and version history for Agentuity products"
@@ -1434,7 +1872,7 @@ This section contains the release notes and version history for Agentuity produc
 Each page documents the changes, improvements, and bug fixes in each release.
 
 
-file: ./content/Changelog/sdk-js.mdx
+file: Changelog/sdk-js.mdx
 meta: {
   "title": "JavaScript SDK Changelog",
   "description": "Release notes and version history for the Agentuity JavaScript SDK"
@@ -1443,6 +1881,333 @@ meta: {
 import { Callout } from 'fumadocs-ui/components/callout';
 
 This page documents the release history of the [Agentuity JavaScript SDK](https://github.com/agentuity/sdk-js).
+## v0.0.115
+
+<Callout type="info">
+  Released: May 14, 2025
+</Callout>
+
+### Changes
+
+- Added AGENTUITY_SDK_KEY ([PR #107](https://github.com/agentuity/sdk-js/pull/107))
+
+### ⚠️ Breaking Changes
+
+The environment variable `AGENTUITY_API_KEY` has been renamed to `AGENTUITY_SDK_KEY` for better clarity and consistency. You will need to update your environment variables and code references accordingly.
+
+If you're using the Agentuity CLI, it will detect this change and offer to automatically migrate your code references for you.
+
+For example, you'll need to make the following changes in your code and environment variables:
+
+```diff
+- process.env.AGENTUITY_API_KEY
++ process.env.AGENTUITY_SDK_KEY
+```
+
+If you're using an Agentic code editor (such as Cursor, Windsurf, etc.), you can use this prompt to update your code with these changes:
+
+```
+The Agentuity SDK v0.0.115 has renamed AGENTUITY_API_KEY to AGENTUITY_SDK_KEY.
+Please find all instances of AGENTUITY_API_KEY in my code and replace them with AGENTUITY_SDK_KEY.
+```
+
+## v0.0.114
+
+<Callout type="info">
+  Released: May 10, 2025
+</Callout>
+
+### Changes
+
+- Fixed issue with Vector get type being wrong ([PR #106](https://github.com/agentuity/sdk-js/pull/106))
+
+
+## v0.0.113
+
+<Callout type="info">
+  Released: May 8, 2025
+</Callout>
+
+### Changes
+
+- Cross platform support for headers.toJSON ([PR #105](https://github.com/agentuity/sdk-js/pull/105), resolves [#103](https://github.com/agentuity/sdk-js/issues/103))
+
+## v0.0.112
+
+<Callout type="info">
+  Released: May 2, 2025
+</Callout>
+
+### Changes
+
+- Add a bun server handler to handle unhandled errors ([PR #100](https://github.com/agentuity/sdk-js/pull/100))
+- Add missing console methods ([PR #101](https://github.com/agentuity/sdk-js/pull/101))
+
+## v0.0.111
+
+<Callout type="info">
+  Released: May 1, 2025
+</Callout>
+
+### Changes
+
+- More fixes related to gzip compression when using keyvalue
+- Change the name of the span when doing a remote solution vs remote execution
+- Update to use versioned routes for API services ([PR #97](https://github.com/agentuity/sdk-js/pull/97))
+
+## v0.0.110
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+### Changes
+
+- In cloud we must bind to all addresses ([PR #96](https://github.com/agentuity/sdk-js/pull/96))
+
+## v0.0.109
+
+<Callout type="info">
+  Released: April 29, 2025
+</Callout>
+
+### Changes
+
+- Add the ability for an agent to return a Response object directly to provide more flexibility to integrate with existing APIs and protocols ([PR #93](https://github.com/agentuity/sdk-js/pull/93))
+- Bind explicitly to ipv4 when creating server ([PR #94](https://github.com/agentuity/sdk-js/pull/94))
+
+## v0.0.108
+
+<Callout type="info">
+  Released: April 25, 2025
+</Callout>
+
+### Changes
+
+- Fixed issue when the keyvalue returns a gzip encoded value ([PR #92](https://github.com/agentuity/sdk-js/pull/92))
+
+## v0.0.107
+
+<Callout type="info">
+  Released: April 25, 2025
+</Callout>
+
+### Changes
+
+- Fix issue with chunking and streaming text not matching in some cases ([PR #91](https://github.com/agentuity/sdk-js/pull/91))
+## v0.0.106
+
+<Callout type="info">
+  Released: April 25, 2025
+</Callout>
+
+### Changes
+
+- Add support for streaming data to and from agents.  This includes streaming data to the agent via the `data` object and streaming data from the agent via the `stream` property of the `AgentResponse` object.
+- The `trigger` property of the `AgentRequest` object will have the value `agent` when the request is invoked by another agent.
+- The `AgentContext` object now has a `scope` property that will have the value of `local` when the context is local or `remote` when agent is being invoked by another agent remotely. In the case of agent-to-agent invocation or handoff within the same project, the scope will be `local`.
+- Deprecated the local `/run/:agentId` route since the updated `/:agentId` route now supports streaming data to and from the agent directly. This route will be removed in a near future release.
+
+### ⚠️ Breaking Changes
+
+The `data` object of `AgentRequest` has changed to support fully streaming data and this required a breaking change. Most of the property accessors are now async functions to support the streaming use case.  You can read more about this change in [Pull Request #87](https://github.com/agentuity/sdk-js/pull/87).
+
+For example, the following code changes are required to get the request data as text:
+
+```diff
+- const text = req.data.text;
++ const text = await req.data.text();
+```
+
+For example, to get the request data as JSON, you need to make the following changes:
+
+```diff
+- const json = req.data.json;
++ const json = await req.data.json();
+```
+
+See the following documentation [Pull Request](https://github.com/agentuity/docs/pull/92) for specific SDK changes.
+
+If you're using an Agentic code editor (such as Cursor, Windsurf, etc.), you can use this prompt to update your code with these changes:
+
+```
+The agents in the agents folder use an older version of the Agentuity SDK which assume the req.data object has properties on it like req.data.json
+
+The new way to do this is with a promise. eg. `await req.data.json()`
+
+The breaking change is here:  https://github.com/agentuity/sdk-js/pull/87
+
+Review this PR, make a plan to change the agents to the latest agentuity SDK with async await support, and execute on it.
+```
+
+## v0.0.105
+
+<Callout type="info">
+  Released: April 23, 2025
+</Callout>
+
+### Changes
+
+- Add support for remote agent handoff ([PR #85](https://github.com/agentuity/sdk-js/pull/85)). This means you can now handoff the request to another agent outside of your current project in the same organization or even outside of your organization if the Agent is public.  The agent-to-agent invocation is secured automatically and doesn't require any additional configuration or authentication.  Internally, the SDK will request a one-time authorization token to invoke the agent on your agent's behalf.
+
+## v0.0.104
+
+<Callout type="info">
+  Released: April 23, 2025
+</Callout>
+
+### Changes
+
+- Add support for remote agent-to-agent invocation ([PR #83](https://github.com/agentuity/sdk-js/pull/83)). This means you can now invoke another agent outside of your current project in the same organization or even outside of your organization if the Agent is public.  The agent-to-agent invocation is secured automatically and doesn't require any additional configuration or authentication.  Internally, the SDK will request a one-time authorization token to invoke the agent on your agent's behalf.
+
+## v0.0.103
+
+<Callout type="info">
+  Released: April 23, 2025
+</Callout>
+
+### Changes
+
+- Refactor to support binary streams instead of intermediate JSON protocol ([PR #81](https://github.com/agentuity/sdk-js/pull/81))
+- Improved handling of HTTP native protocol
+- Added support for passing in the runId
+- Better handling of stream data and binary content
+
+## v0.0.102
+
+<Callout type="info">
+  Released: April 16, 2025
+</Callout>
+
+### Changes
+
+- Fix issue where the child span had the wrong parent on outbound requests for agent-to-agent ([PR #79](https://github.com/agentuity/sdk-js/pull/79))
+
+## v0.0.101
+
+<Callout type="info">
+  Released: April 18, 2025
+</Callout>
+
+### Changes
+
+- Add agent context to console logger when running inside agent scope ([PR #77](https://github.com/agentuity/sdk-js/pull/77))
+
+## v0.0.100
+
+<Callout type="info">
+  Released: April 15, 2025
+</Callout>
+
+### Changes
+
+- Add permissions
+- Add more otel trace context headers, remove old trace provider ([PR #72](https://github.com/agentuity/sdk-js/pull/72))
+- Automatically base64 encode welcome prompts ([PR #73](https://github.com/agentuity/sdk-js/pull/73))
+- Fix NodeJS issue where the buffer isn't correctly sending the blob but works fine in Bun version ([PR #74](https://github.com/agentuity/sdk-js/pull/74))
+- Debug github workflow git tag issue
+
+## v0.0.99
+
+<Callout type="info">
+  Released: April 14, 2025
+</Callout>
+
+### Changes
+
+- More debug for github workflow
+
+## v0.0.98
+
+<Callout type="info">
+  Released: April 13, 2025
+</Callout>
+
+### Changes
+
+- More debug for github release tags
+
+## v0.0.97
+
+<Callout type="info">
+  Released: April 12, 2025
+</Callout>
+
+### Changes
+
+- Attempt to fix issue with github workflow not pushing tag after release
+
+## v0.0.96
+
+<Callout type="info">
+  Released: April 11, 2025
+</Callout>
+
+### Changes
+
+- Fix issue with node keyvalue not correctly handling the buffer upload
+
+## v0.0.95
+
+<Callout type="info">
+  Released: April 10, 2025
+</Callout>
+
+### Changes
+
+- Add more otel trace context headers, remove old trace provider
+- Base64 encode the welcome prompts
+
+## v0.0.94
+
+<Callout type="info">
+  Released: April 8, 2025
+</Callout>
+
+### Changes
+
+- Fix regression in otel traces missing for AI SDK by change in opentelemetry-api version change
+
+## v0.0.93
+
+<Callout type="info">
+  Released: April 7, 2025
+</Callout>
+
+### Changes
+
+- Add support for agent inspection discovery ([PR #70](https://github.com/agentuity/sdk-js/pull/70))
+
+## v0.0.92
+
+<Callout type="info">
+  Released: April 5, 2025
+</Callout>
+
+### Changes
+
+- Add data and markdown methods to AgentResponse interface and implementation
+
+## v0.0.91
+
+<Callout type="info">
+  Released: April 3, 2025
+</Callout>
+
+### Changes
+
+- Use new agentuity sdk api
+- Add GitHub workflow for npm package release triggered by version tags ([PR #53](https://github.com/agentuity/sdk-js/pull/53))
+
+## v0.0.90
+
+<Callout type="info">
+  Released: April 1, 2025
+</Callout>
+
+### Changes
+
+- Fix Vector delete api
 
 ## v0.0.89
 
@@ -1557,7 +2322,7 @@ This page documents the release history of the [Agentuity JavaScript SDK](https:
 For earlier versions, see the [CHANGELOG.md](https://github.com/agentuity/sdk-js/blob/main/CHANGELOG.md) file in the repository.
 
 
-file: ./content/Changelog/sdk-py.mdx
+file: Changelog/sdk-py.mdx
 meta: {
   "title": "Python SDK Changelog",
   "description": "Release notes and version history for the Agentuity Python SDK"
@@ -1566,6 +2331,134 @@ meta: {
 import { Callout } from 'fumadocs-ui/components/callout';
 
 This page documents the release history of the [Agentuity Python SDK](https://github.com/agentuity/sdk-py).
+
+## v0.0.84
+
+<Callout type="info">
+  Released: May 14, 2025
+</Callout>
+
+### Added
+
+- Added AGENTUITY_SDK_KEY ([#42](https://github.com/agentuity/sdk-py/pull/42))
+
+### ⚠️ Breaking Changes
+
+The environment variable for API authentication has changed from `AGENTUITY_API_KEY` to `AGENTUITY_SDK_KEY`. You will need to update any references to this environment variable in your code and deployment configurations.
+
+For example, the following changes are required:
+
+```diff
+- os.environ["AGENTUITY_API_KEY"] = "your-api-key"
++ os.environ["AGENTUITY_SDK_KEY"] = "your-api-key"
+```
+
+When using the Agentuity CLI, it will detect this change and ask if you would like assistance migrating your code automatically.
+
+If you're using an Agentic code editor (such as Cursor, Windsurf, etc.), you can use this prompt to update your code with these changes:
+
+```
+The Agentuity SDK v0.0.115 has renamed AGENTUITY_API_KEY to AGENTUITY_SDK_KEY.
+Please find all instances of AGENTUITY_API_KEY in my code and replace them with AGENTUITY_SDK_KEY.
+```
+
+## v0.0.83
+
+<Callout type="info">
+  Released: May 9, 2025
+</Callout>
+
+### Fixed
+
+- Fix issue vectors, better typing for Vector and KeyValue in context ([#40](https://github.com/agentuity/sdk-py/pull/40))
+
+## v0.0.82
+
+<Callout type="info">
+  Released: April 30, 2025
+</Callout>
+
+### Changes
+
+- Add support for streaming data to and from agents.  This includes streaming data to the agent via the `data` object and streaming data from the agent via the `stream` property of the `AgentResponse` object.
+- The `trigger` property of the `AgentRequest` object will have the value `agent` when the request is invoked by another agent.
+- The `AgentContext` object now has a `scope` property that will have the value of `local` when the context is local or `remote` when agent is being invoked by another agent remotely. In the case of agent-to-agent invocation or handoff within the same project, the scope will be `local`.
+- Deprecated the local `/run/:agentId` route since the updated `/:agentId` route now supports streaming data to and from the agent directly. This route will be removed in a near future release.
+
+### ⚠️ Breaking Changes
+
+The `data` object of `AgentRequest` has changed to support fully streaming data and this required a breaking change. Most of the property accessors are now async functions to support the streaming use case.  You can read more about this change in [Pull Request #38](https://github.com/agentuity/sdk-py/pull/38).
+
+For example, the following code changes are required to get the request data as text:
+
+```diff
+- text = req.data.text;
++ text = await req.data.text();
+```
+
+For example, to get the request data as JSON, you need to make the following changes:
+
+```diff
+- json = req.data.json;
++ json = await req.data.json();
+```
+
+See the following documentation [Pull Request](https://github.com/agentuity/docs/pull/114) for specific SDK changes.
+
+If you're using an Agentic code editor (such as Cursor, Windsurf, etc.), you can use this prompt to update your code with these changes:
+
+```
+The agents in the agents folder use an older version of the Agentuity SDK which assume the req.data object has properties on it like req.data.json
+
+The new way to do this is with a promise. eg. `await req.data.json()`
+
+The breaking change is here:  https://github.com/agentuity/sdk-py/pull/38
+
+Review this PR, make a plan to change the agents to the latest agentuity SDK with async await support, and execute on it.
+```
+
+
+## v0.0.77
+
+<Callout type="info">
+  Released: April 7, 2025
+</Callout>
+
+### Added
+
+- Add comprehensive test suite with pytest ([#27](https://github.com/agentuity/sdk-py/pull/27))
+- Expand test coverage for logger, context, and langchain instrumentation ([#28](https://github.com/agentuity/sdk-py/pull/28))
+- Add agent inspect endpoint support ([#29](https://github.com/agentuity/sdk-py/pull/29))
+
+## v0.0.76
+
+<Callout type="info">
+  Released: April 3, 2025
+</Callout>
+
+### Fixed
+
+- Fix Langchain instrumentation and add openai-agents dependency ([#24](https://github.com/agentuity/sdk-py/pull/24))
+
+## v0.0.75
+
+<Callout type="info">
+  Released: April 1, 2025
+</Callout>
+
+### Added
+
+- Add data and markdown methods to AgentResponse class ([#26](https://github.com/agentuity/sdk-py/pull/26))
+- Add PyPI release workflow ([#22](https://github.com/agentuity/sdk-py/pull/22))
+
+### Changed
+
+- Update logo URL from relative to absolute path ([#19](https://github.com/agentuity/sdk-py/pull/19))
+- Remove 'work in progress' warning from README ([#20](https://github.com/agentuity/sdk-py/pull/20))
+- Update Agentuity gateway URL from /llm/ to /gateway/ ([#21](https://github.com/agentuity/sdk-py/pull/21))
+- Update to use AGENTUITY_CLOUD_PORT with fallback to PORT ([#23](https://github.com/agentuity/sdk-py/pull/23))
+- Use transport instead of API for hosted SDK api ([#25](https://github.com/agentuity/sdk-py/pull/25))
+- Update CHANGELOG.md for v0.0.74 ([#18](https://github.com/agentuity/sdk-py/pull/18))
 
 ## v0.0.74
 
@@ -1641,7 +2534,54 @@ This page documents the release history of the [Agentuity Python SDK](https://gi
 - Added httpx dependency for improved HTTP client support
 
 
-file: ./content/Cloud/api-keys.mdx
+file: Cloud/agents.mdx
+meta: {
+  "title": "Agent Dashboard",
+  "description": "Overview of the agent dashboard in Agentuity Cloud"
+}
+
+## Agent Dashboard Overview
+
+The agent dashboard provides a comprehensive view of your deployed agent and its performance. This page helps you monitor your agent's status, usage metrics, and recent activity.
+
+## Dashboard Sections
+
+### Agent Information
+The top section of the dashboard displays essential information about your agent:
+- Agent status (Active/Inactive)
+- Creation date
+- Last updated and deployment dates
+- LLM models being used by the agent
+
+### Cost & Usage Tracking
+This section provides detailed metrics about your agent's usage:
+- Total cost accumulated
+- LLM cost (portion of the total cost spent on language model calls)
+- Input tokens processed
+- Output tokens generated
+
+### Recent Activity
+The activity section shows a table of recent sessions for your agent, including:
+- Session status (Pending, Completed, Error)
+- Duration of each session
+- Cost per session
+- When the session started
+
+### I/O Visualization
+The I/O visualization shows how your agent connects to various inputs and outputs. This visual representation helps you understand the flow of data through your agent.
+
+## Calling Your Agent
+
+To call your deployed agent from external applications:
+
+1. In the I/O visualization, click on the webhook icon or the plus button to add a webhook
+2. View the webhook configuration modal to get your agent's webhook URL
+3. Use this URL to send requests to your agent from your applications
+
+For detailed information about using webhooks with your agent, see the [Webhooks](/Integrations/webhooks) documentation.
+
+
+file: Cloud/api-keys.mdx
 meta: {
   "title": "API Keys Management",
   "description": "Learn how to create, view, and manage API keys in the Agentuity Cloud Console"
@@ -1672,7 +2612,7 @@ To create a new API key:
 Note: An API key is automatically created when you create a new project. You can view and manage this key in the API Keys page.
 
 
-file: ./content/Cloud/index.mdx
+file: Cloud/index.mdx
 meta: {
   "title": "Cloud Console Overview",
   "description": "Introduction to the Agentuity Cloud Console and its features"
@@ -1715,7 +2655,7 @@ The Settings section allows you to manage various configuration options:
 - **User Profile**: Update your user profile and preferences
 
 
-file: ./content/Cloud/key-value-memory.mdx
+file: Cloud/key-value-memory.mdx
 meta: {
   "title": "Key-Value Memory Storage",
   "description": "Learn how to create, view, and manage key-value memory storage in the Agentuity Cloud Console"
@@ -1749,7 +2689,7 @@ There are two ways to create a new key-value instance:
 2. In code, using the Agentuity SDK
 
 
-file: ./content/Cloud/vector-memory.mdx
+file: Cloud/vector-memory.mdx
 meta: {
   "title": "Vector Memory Storage",
   "description": "Learn how to create, view, and manage vector memory storage in the Agentuity Cloud Console"
@@ -1782,7 +2722,138 @@ There are two ways to create a new vector instance:
 2. In code, using the Agentuity SDK
 
 
-file: ./content/Integrations/index.mdx
+file: Examples/index.mdx
+meta: {
+  "title": "Examples",
+  "description": "Links to examples across our GitHub repositories"
+}
+
+While our comprehensive examples documentation is coming soon,
+you can explore our GitHub repositories where we maintain a
+collection of reference implementations.
+
+<div className="mt-8 mb-8">
+  <a
+    href="https://github.com/agentuity/examples"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center px-4 py-0.5 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    View Examples on GitHub
+  </a>
+</div>
+
+## Featured Examples
+
+### Miami Concierge Agent Template
+
+A React-based concierge service template for Miami visitors, showcasing how to build a user-friendly agent interface.
+
+<div className="my-6 aspect-w-16 aspect-h-9">
+  <iframe
+    width="100%"
+    height="400"
+    src="https://www.youtube.com/embed/7rfVPT4-uTA"
+    title="Miami Concierge Agent Template"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+<div className="mt-4 mb-8">
+  <a
+    href="https://github.com/agentuity/agent-react-miami-concierge-template"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center px-3 py-0.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    <svg className="h-3.5 w-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    View on GitHub
+  </a>
+</div>
+
+### Content Marketing Agent System
+
+Agents for creating, managing, and scheduling social media content using a multi-agent architecture.
+
+<div className="mt-4 mb-8">
+  <a
+    href="https://github.com/agentuity/agent-social-marketing"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center px-3 py-0.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    <svg className="h-3.5 w-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    View on GitHub
+  </a>
+</div>
+
+### Newsroom: AI-Powered Content Pipeline
+
+An automated content generation system that collects, processes, and publishes AI-related news content using specialized AI agents.
+
+<div className="mt-4 mb-8">
+  <a
+    href="https://github.com/agentuity/newsroom-agentuity"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center px-3 py-0.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    <svg className="h-3.5 w-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    View on GitHub
+  </a>
+</div>
+
+### Agent Changelog
+
+A tool for automatically generating and managing changelogs for your projects.
+
+<div className="mt-4 mb-8">
+  <a
+    href="https://github.com/agentuity/agent-changelog"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center px-3 py-0.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    <svg className="h-3.5 w-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    View on GitHub
+  </a>
+</div>
+
+## SDK Examples
+
+We provide comprehensive examples for our SDKs to help you get started with building agents using Agentuity.
+
+### JavaScript SDK Examples
+
+Our JavaScript SDK examples demonstrate how to build agents using JavaScript:
+
+<div className="mt-4 mb-4">
+  <a
+    href="/SDKs/javascript/examples"
+    className="inline-flex items-center justify-center px-3 py-0.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    View JavaScript SDK Examples
+  </a>
+</div>
+
+### Python SDK Examples
+
+Our Python SDK examples demonstrate how to build agents using Python:
+
+<div className="mt-4 mb-4">
+  <a
+    href="/SDKs/python/examples"
+    className="inline-flex items-center justify-center px-3 py-0.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    View Python SDK Examples
+  </a>
+</div>
+
+
+file: Integrations/index.mdx
 meta: {
   "title": "Integrations",
   "description": "Guide to integrating Agentuity with external services and platforms"
@@ -1802,7 +2873,7 @@ Learn how to integrate Agentuity with various external services and platforms.
 
 [Content coming soon - Integration best practices and recommendations]  
 
-file: ./content/Integrations/slack.mdx
+file: Integrations/slack.mdx
 meta: {
   "title": "Slack Integration",
   "description": "Integrate Agentuity with Slack for notifications and interactions"
@@ -1832,7 +2903,7 @@ meta: {
 
 [Content coming soon - Common Slack integration issues and solutions]  
 
-file: ./content/Integrations/sms.mdx
+file: Integrations/sms.mdx
 meta: {
   "title": "SMS Integration",
   "description": "Integrate Agentuity with SMS services for notifications and interactions"
@@ -1862,7 +2933,7 @@ meta: {
 
 [Content coming soon - Common SMS integration issues and solutions]  
 
-file: ./content/Integrations/webhooks.mdx
+file: Integrations/webhooks.mdx
 meta: {
   "title": "Webhooks",
   "description": "Setting up and managing webhooks with Agentuity"
@@ -1870,19 +2941,30 @@ meta: {
 
 ## Overview
 
-[Content coming soon - Overview of webhook functionality]
+Webhooks provide a way to send data to your Agentuity agents or receive data from them. This guide covers how to set up and use webhooks with your Agentuity agents.
 
-## Setting Up Webhooks
+## Setting Up Inbound Webhooks
 
-[Content coming soon - Step-by-step webhook setup guide]
+Inbound webhooks allow external systems to send data to your Agentuity agents.
+
+### Accessing Webhook Configuration
+
+1. Navigate to your agent's dashboard in the Agentuity Cloud Console
+2. In the I/O visualization, click on the plus button to add a webhook or click on an existing webhook
+3. The webhook configuration modal will appear with all necessary settings
+
+### Security Considerations
+
+When setting up webhooks, consider the following security best practices:
+
+- Choose the appropriate authentication method based on your security requirements
+- Regularly rotate authentication credentials
+- Only expose the minimum required data through your webhooks
+- Monitor webhook access logs for unusual activity
 
 ## Webhook Events
 
 [Content coming soon - Available webhook events and their payloads]
-
-## Security
-
-[Content coming soon - Webhook security best practices]
 
 ## Testing
 
@@ -1890,9 +2972,344 @@ meta: {
 
 ## Troubleshooting
 
-[Content coming soon - Common webhook issues and solutions]  
+[Content coming soon - Common webhook issues and solutions]          
 
-file: ./content/SDKs/javascript/api-reference.mdx
+file: Introduction/architecture.mdx
+meta: {
+  "title": "Architecture Overview",
+  "description": "Understanding Agentuity's system architecture, components, and integration points"
+}
+
+## System Architecture
+
+Agentuity is a cloud platform designed to run and scale AI agents with enterprise-grade reliability. 
+Our architecture follows a container-based approach, where each agent operates in its own specialized 
+environment.
+
+Unlike traditional serverless platforms, Agentuity ensures containers run for as long as agents need, 
+maintaining state and context throughout agent lifecycles. This long-running container approach is 
+optimal for complex AI workloads that may require extended processing time.
+
+The platform is fundamentally cross-platform, allowing you to run different agent frameworks 
+(CrewAI, Langchain, custom agents) side by side in the same ecosystem, with built-in communication 
+channels between them.
+
+## Core Components
+
+Agentuity consists of four primary components:
+
+1. **Container Runtime** - The execution environment where your agents run, providing:
+   - Isolated, secure container environments for each agent
+   - Automatic scaling based on workload
+   - Resource management and optimization
+   - Long-running container support for persistent agents
+
+2. **Command Line Interface (CLI)** - A developer tool that enables:
+   - Quick agent creation and initialization
+   - Local development and testing
+   - Deployment management to the Agentuity cloud
+   - Agent monitoring and troubleshooting
+
+3. **Software Development Kits (SDKs)** - Libraries that provide:
+   - Agent-native tools and services
+   - Runtime-specific optimizations for Python and JavaScript (Node and Bun)
+   - Integration capabilities with external systems
+   - Enhanced agent capabilities and extensions
+
+4. **Web Console** - A management interface offering:
+   - Real-time agent monitoring and metrics
+   - Deployment and configuration management
+   - Usage analytics and performance insights
+   - Team collaboration features
+
+## Data Flow
+
+Agent communication and data flow in Agentuity follow secure, encrypted channels:
+
+1. **Agent-to-Agent Communication** - Agents can communicate with each other through encrypted routing, 
+regardless of the underlying frameworks used.
+
+2. **External Integrations** - Agents can connect to external systems and data sources through managed 
+integration points.
+
+3. **Deployment Pipeline** - Your project code is packaged, containerized, and deployed to the Agentuity 
+cloud infrastructure with appropriate networking and routing configured automatically.
+
+## Scalability
+
+Agentuity is designed for enterprise-scale agent deployments:
+
+- **Horizontal Scaling** - Automatically provision additional resources as demand increases
+- **Framework Agnostic** - Scale any type of agent regardless of the underlying framework
+- **Load Balancing** - Distribute agent workloads efficiently across available resources
+- **Resource Optimization** - Intelligently allocate compute resources based on agent requirements
+
+## Security Architecture
+
+Security is foundational to Agentuity's design:
+
+- **Container Isolation** - Each agent operates in its own isolated environment
+- **Encrypted Communications** - All agent-to-agent communication is encrypted
+- **Secure Deployment** - Protected deployment pipeline from development to production
+
+## Project Conventions
+
+Agentuity projects follow specific conventions in order to take advantage of the deployment and cloud platform Agentuity offers. While we don't dictate which framework to use, we do have a few things you have to follow in your file system. Understanding these conventions are important.
+
+### Project Structure
+
+Every Agentuity project requires the following core components:
+
+1. **agentuity.yaml** - The central configuration file that defines:
+   - Project metadata (name, ID, description)
+   - Development settings (port, watch patterns)
+   - Deployment configuration (resources, scaling)
+   - Bundler settings (language, runtime)
+   - Agent definitions and routing
+
+2. **Environment Variables** - Stored in a `.env` file:
+   - `AGENTUITY_SDK_KEY` - Authenticates SDK requests to the platform
+   - `AGENTUITY_PROJECT_KEY` - Identifies your project to the platform
+   - Additional provider-specific keys (OpenAI, Anthropic, etc.)
+
+3. **Agent Directory** - Specified in `bundler.agents.dir` (typically `src/agents`):
+   - Each agent has its own subdirectory
+   - Language-specific entry points (index.ts/js for JavaScript, agent.py for Python)
+   - Agent-specific configuration and dependencies
+
+### Language-Specific Conventions
+
+#### JavaScript/TypeScript Projects
+
+```
+my-project/
+├── agentuity.yaml        # Project configuration
+├── .env                  # Environment variables
+├── package.json          # Dependencies and scripts
+└── src/
+    └── agents/           # Agent directory (configurable)
+        └── my-agent/     # Individual agent
+            └── index.ts  # Agent entry point
+```
+
+- Each agent must export a handler function that processes requests
+- TypeScript is recommended but JavaScript is fully supported
+- Supported runtimes: Node.js and Bun
+
+#### Python Projects
+
+```
+my-project/
+├── agentuity.yaml        # Project configuration
+├── .env                  # Environment variables
+├── pyproject.toml        # Dependencies and configuration
+└── src/
+    └── agents/           # Agent directory (configurable)
+        └── my-agent/     # Individual agent
+            └── agent.py  # Agent entry point
+```
+
+- Each agent must define a `run()` function that processes requests
+- Supported runtimes: Python and uv (for dependency management)
+
+### Configuration File (agentuity.yaml)
+
+The `agentuity.yaml` file is the heart of your project, defining how it behaves in development and production:
+
+```yaml
+version: ">=0.0.0"         # Minimum CLI version required
+project_id: "proj_..."     # Unique project identifier
+name: "My Project"         # Human-readable project name
+description: "..."         # Optional project description
+
+# Development configuration
+development:
+  port: 3000               # Local development server port
+  watch:
+    enabled: true          # Auto-reload on file changes
+    files: ["src/**/*.ts"] # Files to watch
+
+# Deployment configuration
+deployment:
+  resources:
+    memory: "1Gi"          # Memory allocation
+    cpu: "1000m"           # CPU allocation
+
+# Bundler configuration
+bundler:
+  language: "javascript"   # Programming language (javascript or python)
+  runtime: "nodejs"        # Runtime environment (nodejs, bunjs, python, uv)
+  agents:
+    dir: "src/agents"      # Directory where agents are located
+
+# Agents configuration
+agents:
+  - id: "agent_..."        # Unique agent identifier
+    name: "My Agent"       # Human-readable agent name
+    description: "..."     # Optional agent description
+```
+
+### Why These Conventions Matter
+
+These conventions enable several key capabilities:
+
+1. **Consistent Development Experience** - Standardized structure makes it easier to work across projects
+2. **Automated Deployment** - The CLI can package and deploy your project without additional configuration
+3. **Framework Flexibility** - Use any agent framework while maintaining compatibility with the platform
+
+### Importing Existing Projects
+
+If you have an existing agent project, you can adapt it to Agentuity by:
+
+1. Creating an `agentuity.yaml` file with your project configuration
+2. Organizing your agents according to the conventions above
+3. Running `agentuity project import` to register with the platform
+
+
+file: Introduction/index.mdx
+meta: {
+  "title": "Agentuity"
+}
+
+Agentuity is a cloud platform designed specifically for building, deploying, and scaling 
+autonomous AI agents. It provides the infrastructure and tools necessary to manage agents 
+built with any framework, such as CrewAI, LangChain, or custom code.
+
+With Agentuity, you can:
+- Deploy agents with a single command
+- Monitor real-time performance and analytics
+- Scale agents effortlessly
+- Connect agents to various channels (API, chat, webhooks, email, SMS, voice)
+- Use any AI agent framework
+
+## Agentuity Platform Overview
+
+<iframe 
+  width="100%" 
+  height="400" 
+  src="https://www.youtube.com/embed/AI1tfCIVOiU" 
+  title="Agentuity Platform Overview" 
+  frameBorder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+  allowFullScreen
+></iframe>
+
+## Getting Started
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
+### Create an Account
+[Create an Agentuity account](https://app.agentuity.com/sign-up) or [Sign in](https://app.agentuity.com/sign-in) to the cloud portal.
+</Step>
+
+<Step>
+### Install the CLI
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+<Tabs items={['macOS', 'Linux', 'Windows (WSL)']}>
+  <Tab>
+    ```bash
+    curl -fsS https://agentuity.sh | sh
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    curl -fsS https://agentuity.sh | sh
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    curl -fsS https://agentuity.sh | sh
+    ```
+  </Tab>
+</Tabs>
+</Step>
+
+<Step>
+### Login to Agentuity
+```bash
+agentuity login
+```
+</Step>
+
+<Step>
+### Create Your First Project
+```bash
+agentuity new
+```
+</Step>
+
+<Step>
+### Deploy Your Project
+```bash
+agentuity deploy
+```
+</Step>
+
+<Step>
+### Access Your Agent's Webhook
+After deploying your agent, you can find its webhook URL in the agent's dashboard:
+1. Navigate to your agent in the Agentuity Cloud Console
+2. Click on the "Connections" tab or the webhook icon in the I/O visualization
+3. In the "Inbound Webhook" modal, you'll find the webhook URL and configuration options
+
+This webhook URL is what you'll use to send requests to your agent from external applications.
+</Step>
+</Steps>
+
+## Documentation Sections
+
+<Cards>
+  <Card
+    title="Cloud & Account"
+    href="/Cloud/"
+    description="Learn about Agentuity Cloud features, account management, and general platform information."
+  />
+  <Card
+    title="Command Line Interface"
+    href="/CLI/installation"
+    description="Get started with the Agentuity CLI for managing your agents and deployments from the terminal."
+  />
+  <Card
+    title="Examples & Tutorials"
+    href="/Examples/"
+    description="Explore sample projects, step-by-step tutorials, and implementation guides."
+  />
+  <Card
+    title="SDKs & Integration"
+    href="/SDKs"
+    description="Integrate Agentuity Cloud into your applications using our SDKs and APIs."
+  />
+</Cards>
+
+## Need Help?
+
+Join our [Community Discord](https://discord.com/invite/vtn3hgUfuc) for assistance.
+
+
+file: SDKs/index.mdx
+meta: {
+  "title": "SDKs",
+  "description": "Agentuity SDKs"
+}
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', padding: '1rem' }}>
+  <Card href="/SDKs/python">
+    <h3>Python SDK</h3>
+    <p>Build AI Agents with our Python SDK</p>
+  </Card>
+  
+  <Card href="/SDKs/javascript">
+    <h3>JavaScript SDK</h3>
+    <p>Build AI Agents using our JavaScript/TypeScript SDK</p>
+  </Card>
+</div>
+
+
+file: SDKs/javascript/api-reference.mdx
 meta: {
   "title": "API Reference",
   "description": "Comprehensive reference for the Agentuity JavaScript SDK API"
@@ -1962,7 +3379,7 @@ import { AgentHandler } from '@agentuity/sdk';
 const handler: AgentHandler = async (request, response, context) => {
   try {
     // Get the request data
-    const { name } = request.data.json;
+    const { name } = await request.data.json();
     
     // Log the request
     context.logger.info(`Received greeting request for ${name}`);
@@ -2196,10 +3613,6 @@ The `response.handoff()` method allows an agent to handoff the request to anothe
 
 Redirects the current request to another agent.
 
-<Callout type="warn" title="Handoff">
-  Handoff is currently only supported for handoff to other agents in the same project. However, we are working on remote agent handoff and should have that working soon.
-</Callout>
-
 ##### Parameters
 
 - `agent`: Parameters to identify the target agent
@@ -2211,10 +3624,26 @@ Redirects the current request to another agent.
 
 Returns an `AgentRedirectResponse` object.
 
-##### Example
+##### Examples
 
 ```typescript
-// Redirect to another agent
+// By ID
+return response.handoff({
+  id: 'agent_9e478ebc1b6b58f921725e2f6f0025ab',
+});
+
+// By Name
+return response.handoff({
+  name: 'my agent',
+});
+
+// By Name Scoped to a Project
+return response.handoff({
+  name: 'my agent',
+  projectId: 'proj_fc9a68c544c486cebf982c9843b9032b',
+});
+
+// With payload and metadata
 return response.handoff(
   { name: 'data-processing-agent' },
   { data: 'process this' },
@@ -2310,8 +3739,10 @@ The SDK provides specialized methods for various media types:
 - `webm(data: ArrayBuffer, metadata?: Record<string, Json>): AgentResponseType`
 - `wav(data: ArrayBuffer, metadata?: Record<string, Json>): AgentResponseType`
 - `ogg(data: ArrayBuffer, metadata?: Record<string, Json>): AgentResponseType`
+- `data(data: Json | ArrayBuffer | string, contentType: string, metadata?: Record<string, Json>): AgentResponseType`
+- `markdown(content: string, metadata?: Record<string, Json>): AgentResponseType`
 
-Each method works similarly to the `binary()` method but sets the appropriate content type.
+Each method works similarly to the `binary()` method but sets the appropriate content type. The `data` method allows setting specific data with an exact content type, while the `markdown` method provides a convenient way to return markdown content.
 
 #### Example
 
@@ -2432,79 +3863,79 @@ Gets metadata associated with the request.
 Returns the metadata value for the specified key, or the default value if the key does not exist.
 
 
-#### `json(): Json`
+#### `json(): Promise<Json>`
 
 Gets the payload of the request as a JSON object.
 
 ##### Return Value
 
-Returns the request payload as a JSON object.
+Returns a Promise that resolves to the request payload as a JSON object.
 
 ##### Example
 
 ```typescript
-const data = request.data.json;
+const data = await request.data.json();
 console.log(`Request data: ${JSON.stringify(data)}`);
 ```
 
-#### `text(): string`
+#### `text(): Promise<string>`
 
 Gets the payload of the request as a string.
 
 ##### Return Value
 
-Returns the request payload as a string.
+Returns a Promise that resolves to the request payload as a string.
 
 ##### Example
 
 ```typescript
-const text = request.data.text;
+const text = await request.data.text();
 console.log(`Request text: ${text}`);
 ```
 
-#### `binary(): ArrayBuffer`
+#### `binary(): Promise<ArrayBuffer>`
 
 Gets the payload of the request as an ArrayBuffer.
 
 ##### Return Value
 
-Returns the request payload as an ArrayBuffer.
+Returns a Promise that resolves to the request payload as an ArrayBuffer.
 
 ##### Example
 
 ```typescript
-const binaryData = request.binary();
+const binaryData = await request.data.binary();
 console.log(`Binary data size: ${binaryData.byteLength} bytes`);
 ```
 
 ### Media-Specific Methods
 
-The SDK provides specialized methods for various media types:
+The SDK provides specialized methods for various media types, all of which now return Promises:
 
-- `pdf(): ArrayBuffer`
-- `png(): ArrayBuffer`
-- `jpeg(): ArrayBuffer`
-- `gif(): ArrayBuffer`
-- `webp(): ArrayBuffer`
-- `mp3(): ArrayBuffer`
-- `mp4(): ArrayBuffer`
-- `m4a(): ArrayBuffer`
-- `m4p(): ArrayBuffer`
-- `webm(): ArrayBuffer`
-- `wav(): ArrayBuffer`
-- `ogg(): ArrayBuffer`
+- `pdf(): Promise<ArrayBuffer>`
+- `png(): Promise<ArrayBuffer>`
+- `jpeg(): Promise<ArrayBuffer>`
+- `gif(): Promise<ArrayBuffer>`
+- `webp(): Promise<ArrayBuffer>`
+- `mp3(): Promise<ArrayBuffer>`
+- `mp4(): Promise<ArrayBuffer>`
+- `m4a(): Promise<ArrayBuffer>`
+- `m4p(): Promise<ArrayBuffer>`
+- `webm(): Promise<ArrayBuffer>`
+- `wav(): Promise<ArrayBuffer>`
+- `ogg(): Promise<ArrayBuffer>`
 
-Each method returns the request payload as an ArrayBuffer with the appropriate content type validation.
+Each method returns a Promise that resolves to the request payload as an ArrayBuffer with the appropriate content type validation.
 
 #### Example
 
 ```typescript
 // Get an image from the request
-const image = request.png();
+const image = await request.png();
 // Process the image...
 
 // Get audio from the request
-const audio = request.mp3();
+const audio = await request.mp3();
 // Process the audio...
 ```
 
@@ -2609,6 +4040,62 @@ const requestLogger = context.logger.child({ requestId: '123', userId: '456' });
 requestLogger.info('Processing request'); // Includes requestId and userId
 ```
 
+## Welcome Function
+
+The Agentuity SDK allows you to customize the initial appearance of DevMode when it starts interacting with your agents by exporting a `welcome()` function. This function returns an `AgentWelcomeResult` object that includes a welcome message and optional example prompts.
+
+### AgentWelcomeResult Interface
+
+```typescript
+export interface AgentWelcomePrompt {
+  /**
+   * The data to display to the user
+   */
+  data: Buffer | Uint8Array | ArrayBuffer | string | Json | Blob | ReadableStream | Data;
+  /**
+   * The content type of the data
+   */
+  contentType: string;
+}
+
+export interface AgentWelcomeResult {
+  /**
+   * The welcome prompt to display to the user
+   */
+  welcome: string;
+  /**
+   * The example prompts to display to the user
+   */
+  prompts?: AgentWelcomePrompt[];
+}
+```
+
+### welcome()
+
+Defines a welcome message and optional example prompts for DevMode.
+
+#### Return Value
+
+Returns an `AgentWelcomeResult` object with a welcome message and optional prompts.
+
+#### Example
+
+```typescript
+export const welcome = (): AgentWelcomeResult => {
+  return {
+    welcome: "Welcome to my Agent! How can I help you today?",
+    prompts: [
+      {
+        data: "What can you do?",
+        contentType: "text/plain",
+      }
+    ],
+  };
+};
+```
+
+
+
 ## Session
 
 The Agentuity SDK provides a `Session` interface that represents the current agent execution context.
@@ -2656,8 +4143,47 @@ context.tracer.startActiveSpan('process-data', async (span) => {
 });
 ```
 
+## Breaking Changes
 
-file: ./content/SDKs/javascript/core-concepts.mdx
+### Data API
+
+In version X.X.X, the Data API was refactored to use async methods instead of static properties to better support streaming capabilities:
+
+#### Before:
+```typescript
+// Accessing data properties directly
+const jsonData = request.data.json;
+const textData = request.data.text;
+const base64Data = request.data.base64;
+```
+
+#### After:
+```typescript
+// Using async methods to access data
+const jsonData = await request.data.json();
+const textData = await request.data.text();
+const base64Data = await request.data.base64();
+```
+
+This change affects all methods on the `Data` interface:
+- `data.base64` → `data.base64()`
+- `data.text` → `data.text()`
+- `data.json` → `data.json()`
+- `data.object<T>()` → `data.object<T>()`
+- `data.binary` → `data.binary()`
+- `data.buffer` → `data.buffer()`
+- `data.stream` → `data.stream()`
+
+
+## Deprecated Features
+
+### `/run/:id` Route
+
+The `/run/:id` route is now deprecated as it provides the same functionality as `/:id`. Applications should update their code to use the `/:id` route instead.
+
+
+
+file: SDKs/javascript/core-concepts.mdx
 meta: {
   "title": "Core Concepts",
   "description": "Learn about the fundamental concepts of the Agentuity JavaScript SDK"
@@ -2682,7 +4208,7 @@ import { AgentHandler } from '@agentuity/sdk';
 // Agent handler function
 const handler: AgentHandler = async (request, response, context) => {
   // Process the request
-  const data = request.data.json;
+  const data = await request.data.json();
   
   // Use the context (logging, storage, etc.)
   context.logger.info('Processing request', data);
@@ -2713,10 +4239,10 @@ Requests contain information about the trigger event and payload data. The `Agen
 - `request.get(key, defval)` - Get a value from the request metadata
 - `request.data` - Get a Data object from the request
 - `request.data.contentType` - The content type (or mime type) of the request
-- `request.data.json` - Get the payload as a JSON object
-- `request.data.object<T>()` - Get the payload as a JSON object and parse it as a specific type
-- `request.data.text` - Get the payload as a string
-- `request.data.binary` - Get the payload as an ArrayBuffer
+- `request.data.json()` - Get the payload as a JSON object (async, requires await)
+- `request.data.object<T>()` - Get the payload as a JSON object and parse it as a specific type (async, requires await)
+- `request.data.text()` - Get the payload as a string (async, requires await)
+- `request.data.binary()` - Get the payload as an ArrayBuffer (async, requires await)
 
 
 ### Responses
@@ -2740,6 +4266,7 @@ The context object provides access to various capabilities and services:
 - `context.vector` - Vector storage
 - `context.getAgent()` - Access to other agents both locally and remotely
 - `context.tracer` - OpenTelemetry tracing
+- `context.scope` - The scope of the agent invocation ('local' or 'remote')
 - Metadata about the current execution (runId, projectId, etc.)
 
 ## Triggers and Event Types
@@ -2758,7 +4285,7 @@ Agents can be triggered by various event types:
 Each trigger type may provide different metadata and payload formats, which can be accessed through the request object.
 
 
-file: ./content/SDKs/javascript/error-handling.mdx
+file: SDKs/javascript/error-handling.mdx
 meta: {
   "title": "Error Handling",
   "description": "Learn how to handle errors in the Agentuity JavaScript SDK"
@@ -3015,7 +4542,7 @@ context.tracer.startActiveSpan('operation-name', async (span) => {
 ```
 
 
-file: ./content/SDKs/javascript/examples.mdx
+file: SDKs/javascript/examples/index.mdx
 meta: {
   "title": "Examples",
   "description": "Practical examples of using the Agentuity JavaScript SDK"
@@ -3034,7 +4561,7 @@ import { AgentHandler } from '@agentuity/sdk';
 const handler: AgentHandler = async (request, response, context) => {
   try {
     // Get the request data
-    const data = request.data.json;
+    const data = await request.data.json();
     const name = data.name || 'Guest';
     
     // Log the request
@@ -3066,7 +4593,7 @@ This example demonstrates how to use the key-value storage API to store and retr
 import { AgentHandler } from '@agentuity/sdk';
 
 const handler: AgentHandler = async (request, response, context) => {
-  const { action, userId, preferences } = request.data.json;
+  const { action, userId, preferences } = await request.data.json();
   
   switch (action) {
     case 'get': {
@@ -3119,7 +4646,7 @@ This example demonstrates how to use the vector storage API for semantic search:
 import { AgentHandler } from '@agentuity/sdk';
 
 const handler: AgentHandler = async (request, response, context) => {
-  const { action, query, products } = request.data.json;
+  const { action, query, products } = await request.data.json();
   
   switch (action) {
     case 'index': {
@@ -3202,7 +4729,7 @@ This example demonstrates how agents can communicate with each other:
 import { AgentHandler } from '@agentuity/sdk';
 
 const handler: AgentHandler = async (request, response, context) => {
-  const { task, data } = request.data.json;
+  const { task, data } = await request.data.json();
   
   // Log the incoming request
   context.logger.info(`Received task: ${task}`);
@@ -3283,7 +4810,7 @@ class ResourceNotFoundError extends Error {
 const handler: AgentHandler = async (request, response, context) => {
   try {
     // Get the request data
-    const data = request.data.json;
+    const data = await request.data.json();
     
     // Validate the request
     if (!data.resourceId) {
@@ -3374,7 +4901,7 @@ const handler: AgentHandler = async (request, response, context) => {
       span.setAttribute('trigger', request.trigger());
       
       // Get the request data
-      const data = request.data.json;
+      const data = await request.data.json();
       span.setAttribute('data.type', typeof data);
       
       // Create a child span for data processing
@@ -3449,6 +4976,81 @@ async function processData(data: any, context: any) {
 export default handler;
 ```
 
+## Welcome Function Example
+
+This example demonstrates how to customize the initial appearance of DevMode when it starts interacting with your agents:
+
+```typescript
+// agent.ts
+import type { AgentHandler, AgentWelcomeResult } from '@agentuity/sdk';
+
+export const welcome = (): AgentWelcomeResult => {
+  return {
+    welcome: "Welcome to my Agent! How can I help you today?",
+    prompts: [
+      {
+        data: "What can you do?",
+        contentType: "text/plain",
+      },
+      {
+        data: "Tell me about yourself",
+        contentType: "text/plain",
+      }
+    ],
+  };
+};
+
+const handler: AgentHandler = async (request, response, context) => {
+  // Agent logic
+  return response.text('Hello, World!');
+};
+
+export default handler;
+```
+
+### Real-World Example
+
+Here's a more comprehensive example from the React Miami 2025 Concierge template:
+
+```typescript
+// ConciergeHost/index.ts
+import type { AgentWelcomeResult } from "@agentuity/sdk";
+
+export const welcome = (): AgentWelcomeResult => {
+  return {
+    welcome: "Welcome to the React Miami 2025 Concierge! How can I help you today?",
+    prompts: [
+      {
+        data: "Where should I go for dinner in Miami, tonight?",
+        contentType: "text/plain",
+      },
+      {
+        data: "What sessions about React hooks are happening today?",
+        contentType: "text/plain",
+      },
+      {
+        data: "Tell me more about [Speaker Name]'s background",
+        contentType: "text/plain",
+      },
+      {
+        data: "I'm hungry and looking for Cuban food near the conference",
+        contentType: "text/plain",
+      },
+      {
+        data: "What is Agentuity all about?",
+        contentType: "text/plain",
+      },
+      {
+        data: "What can I do?",
+        contentType: "text/plain",
+      },
+    ],
+  };
+};
+```
+
+Note that in this example, some prompts use plain text directly while others use base64 encoding. Both approaches work, but using base64 encoding is recommended for consistency.
+
 ## OpenAI Streaming Example
 
 This example demonstrates how to stream responses from OpenAI models in your Agentuity agent. Streaming allows for a more responsive user experience by displaying the AI's response as it's being generated, rather than waiting for the entire response to complete.
@@ -3488,8 +5090,136 @@ To use this example, you'll need to install the following dependencies:
 npm install ai @ai-sdk/openai
 ```
 
+## Agent-to-Agent Streaming Example
 
-file: ./content/SDKs/javascript/frameworks.mdx
+This example demonstrates how to call another agent and stream its response back to the client. This is useful for creating agent workflows where one agent processes a request and streams the response through another agent.
+
+```typescript
+import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
+
+export default async function Agent(
+	req: AgentRequest,
+	resp: AgentResponse,
+	ctx: AgentContext,
+) {
+	// Setup to talk to another agent
+	const agent = await ctx.getAgent({
+		name: 'HistoryExpert',
+	});
+
+	// Invoke the agent
+	const agentResponse = await agent.run({
+		data: 'What engine did a P-51D Mustang use?',
+	});
+
+	// Get the stream from the agent
+	const stream = await agentResponse.data.stream();
+
+	// Return the stream to the client
+	return resp.stream(stream);
+}
+```
+
+### How It Works
+
+1. We use `ctx.getAgent()` to get a reference to another agent named 'HistoryExpert'.
+2. We invoke the agent with `agent.run()`, passing the data we want to process.
+3. We retrieve the stream from the agent's response using `agentResponse.data.stream()`.
+4. Finally, we return the stream to the client using `resp.stream()`, which passes the streaming response through our agent.
+
+This pattern allows you to:
+- Chain multiple agents together in a workflow
+- Maintain a streaming experience end-to-end
+- Process or transform streaming data between agents
+
+### Learn More About Streaming
+
+For more information about agent streaming, check out these resources:
+
+- [Agents just want to have streams](https://agentuity.com/blog/agent-streaming) - Blog post explaining the importance and implementation of streaming in agents
+- [Streams for agents!](https://youtu.be/HN_ElBfsWtE) - YouTube video demonstration of agent streaming capabilities
+
+
+file: SDKs/javascript/examples/langchain.mdx
+meta: {
+  "title": "Langchain/LangGraph",
+  "description": "Examples of using the Agentuity JavaScript SDK with Langchain (LangGraph)"
+}
+
+## Simple LangGraph Agent with structured output
+
+Below is an example of how you can take a LangGraph example, empower it with Agentuity's SDK, 
+and deploy it to Agentuity, all in one go.
+
+<div className="my-6 aspect-w-16 aspect-h-9">
+  <iframe
+    width="100%"
+    height="400"
+    src="https://www.youtube.com/embed/lxoeD9VJJjs"
+    title="LangGraph Agent with structured output"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
+
+```typescript
+// Example borrowed from https://langchain-ai.github.io/langgraphjs/how-tos/react-return-structured-output/
+
+import type { AgentRequest, AgentResponse, AgentContext } from "@agentuity/sdk";
+import { ChatOpenAI } from "@langchain/openai";
+import { createReactAgent } from "@langchain/langgraph/prebuilt";
+import { tool } from "@langchain/core/tools";
+import { z } from "zod";
+
+// Tools for the agent
+const weatherTool = tool(
+	async (input): Promise<string> => {
+		if (input.city === "nyc") {
+			return "It might be cloudy in nyc";
+		} else if (input.city === "sf") {
+			return "It's always sunny in sf";
+		} else {
+			throw new Error("Unknown city");
+		}
+	},
+	{
+		name: "get_weather",
+		description: "Use this to get weather information.",
+		schema: z.object({
+			city: z.enum(["nyc", "sf"]).describe("The city to get weather for"),
+		}),
+	}
+);
+
+const langGraphAgent = createReactAgent({
+	llm: new ChatOpenAI({ model: "gpt-4o", temperature: 0 }),
+	tools: [weatherTool],
+	responseFormat: z.object({
+		conditions: z.string().describe("Weather conditions"),
+	}),
+});
+
+export default async function AgentHandler(
+	req: AgentRequest,
+	resp: AgentResponse,
+	ctx: AgentContext,
+) {
+	const response = await langGraphAgent.invoke({
+		messages: [
+			{
+				role: "user",
+				content: (await req.data.text()) ?? "What's the weather in NYC?",
+			},
+		],
+	})
+
+	return resp.json(response.structuredResponse);
+}	
+```
+
+
+file: SDKs/javascript/frameworks.mdx
 meta: {
   "title": "Frameworks",
   "description": "Framework integration for the Agentuity JavaScript SDK"
@@ -3535,7 +5265,7 @@ export default async function Agent(
 ```
 
 
-file: ./content/SDKs/javascript/index.mdx
+file: SDKs/javascript/index.mdx
 meta: {
   "title": "JavaScript SDK",
   "description": "Documentation for the Agentuity JavaScript SDK"
@@ -3573,7 +5303,6 @@ curl -fsSL https://bun.sh/install | bash
 ```
 
 For more information, visit the [Bun installation documentation](https://bun.sh/docs/installation).
-
 
 ## Development
 
@@ -3616,7 +5345,7 @@ Make sure you replace `agent_ID` with the ID of your Agent.
 - [Examples](/SDKs/javascript/examples) - See practical examples of using the SDK
 
 
-file: ./content/SDKs/javascript/llm.mdx
+file: SDKs/javascript/llm.mdx
 meta: {
   "title": "LLM",
   "description": "LLM integration for the Agentuity JavaScript SDK"
@@ -3650,7 +5379,7 @@ When any of the above SDKs are installed, the Agentuity Project will automatical
 
 
 
-file: ./content/SDKs/javascript/troubleshooting.mdx
+file: SDKs/javascript/troubleshooting.mdx
 meta: {
   "title": "Troubleshooting",
   "description": "Common issues and solutions when working with the Agentuity JavaScript SDK"
@@ -3687,7 +5416,7 @@ If you're still experiencing issues after trying the troubleshooting steps above
 4. File an issue on the [GitHub repository](https://github.com/agentuity/sdk-js/issues) if you believe you've found a bug.
 
 
-file: ./content/SDKs/python/api-reference.mdx
+file: SDKs/python/api-reference.mdx
 meta: {
   "title": "API Reference",
   "description": "Complete reference documentation for the Agentuity Python SDK, including request handling, response types, data storage, and agent communication."
@@ -3714,6 +5443,46 @@ This section provides detailed documentation for the Agentuity Python SDK API, i
 - [Telemetry](#telemetry)
 
 > **Note:** This documentation applies to Agentuity Python SDK version 1.0 and above.
+
+## Welcome Function
+
+The Agentuity SDK allows you to customize the initial appearance of DevMode when it starts interacting with your agents by defining a `welcome()` function in your agent module. This function should return a dictionary containing a welcome message and optional example prompts.
+
+### welcome()
+
+Defines a welcome message and optional example prompts for DevMode.
+
+#### Return Value
+
+Returns a dictionary with a welcome message and optional prompts.
+
+```python
+def welcome():
+    return {
+        "welcome": "Welcome message to display",
+        "prompts": [
+            {
+                "data": "Example prompt text",
+                "contentType": "text/plain"
+            }
+        ]
+    }
+```
+
+#### Example
+
+```python
+def welcome():
+    return {
+        "welcome": "Welcome to my Python Agent! How can I help you today?",
+        "prompts": [
+            {
+                "data": "What can you do?",
+                "contentType": "text/plain"
+            }
+        ]
+    }
+```
 
 ## Agent Lifecycle
 
@@ -4181,8 +5950,10 @@ The SDK provides specialized methods for various media types:
 - `mp4(data: bytes, metadata: dict = None) -> AgentResponseType`
 - `wav(data: bytes, metadata: dict = None) -> AgentResponseType`
 - `ogg(data: bytes, metadata: dict = None) -> AgentResponseType`
+- `data(data: Any, content_type: str, metadata: dict = None) -> AgentResponseType`
+- `markdown(content: str, metadata: dict = None) -> AgentResponseType`
 
-Each method works similarly to the `binary()` method but sets the appropriate content type.
+Each method works similarly to the `binary()` method but sets the appropriate content type. The `data` method allows setting specific data with an exact content type, while the `markdown` method provides a convenient way to return markdown content.
 
 #### Example
 
@@ -4505,7 +6276,7 @@ async with context.tracer.start_as_current_span("process-data") as span:
 ```
 
 
-file: ./content/SDKs/python/core-concepts.mdx
+file: SDKs/python/core-concepts.mdx
 meta: {
   "title": "Core Concepts",
   "description": "Learn about the fundamental concepts of the Agentuity Python SDK"
@@ -4601,7 +6372,7 @@ Agents can be triggered by various event types:
 Each trigger type may provide different metadata and payload formats, which can be accessed through the request object.
 
 
-file: ./content/SDKs/python/examples.mdx
+file: SDKs/python/examples/index.mdx
 meta: {
   "title": "Examples",
   "description": "Examples of using the Agentuity Python SDK"
@@ -4675,6 +6446,72 @@ async def run(request: AgentRequest, response: AgentResponse, context: AgentCont
     
     else:
         return response.json({"error": 'Invalid action. Use "get", "set", or "delete".'})
+```
+
+## Welcome Function Example
+
+This example demonstrates how to customize the initial appearance of DevMode when it starts interacting with your agents:
+
+```python
+# agent.py
+
+def welcome():
+    return {
+        "welcome": "Welcome to my Python Agent! How can I help you today?",
+        "prompts": [
+            {
+                "data": "What can you do?",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "Tell me about yourself",
+                "contentType": "text/plain"
+            }
+        ]
+    }
+
+def run(request, response, context):
+    # Agent logic
+    return response.text("Hello, World!")
+```
+
+### Real-World Example
+
+Here's a more comprehensive example inspired by the React Miami 2025 Concierge template:
+
+```python
+# concierge_agent.py
+
+def welcome():
+    return {
+        "welcome": "Welcome to the Python Concierge! How can I help you today?",
+        "prompts": [
+            {
+                "data": "Where should I go for dinner in Miami, tonight?",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "What sessions about Python are happening today?",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "Tell me more about the conference speakers",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "I'm looking for good restaurants near the venue",
+                "contentType": "text/plain"
+            },
+            {
+                "data": "What is Agentuity all about?",
+                "contentType": "text/plain"
+            }
+        ]
+    }
+
+def run(request, response, context):
+    # Agent logic implementation
+    return response.text("Hello, I'm your Python Concierge!")
 ```
 
 ## Vector Storage
@@ -4860,7 +6697,208 @@ This example:
 The `response.stream()` method handles the complexity of streaming the response back to the user, making it easy to implement streaming in your agents.
 
 
-file: ./content/SDKs/python/frameworks.mdx
+file: SDKs/python/examples/pydantic.mdx
+meta: {
+  "title": "Pydantic AI Agent",
+  "description": "Examples of using the Agentuity Python SDK with Pydantic"
+}
+
+## Basic Pydantic AI Agent
+
+Example taken from: https://ai.pydantic.dev/agents/#introduction
+
+
+```python
+import random # Added for random number generation
+from pydantic_ai import Agent, RunContext
+from agentuity import AgentRequest, AgentResponse, AgentContext
+
+# A pydantic agent
+roulette_agent = Agent(
+    'openai:gpt-4o',
+    deps_type=int,
+    output_type=bool,
+    system_prompt=(
+        'Use the `roulette_wheel` function to see if the '
+        'customer has won based on the number they provide.'
+    ),
+)
+
+# A tool for the pydantic agent
+@roulette_agent.tool
+async def roulette_wheel(ctx: RunContext[int], square: int) -> str:
+    """check if the square is a winner"""
+    return 'winner' if square == ctx.deps else 'loser'
+
+
+async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
+		# Spin that wheel!
+    success_number = random.randint(0, 20)  
+
+		# Pull out the user query from the request
+    user_query = await request.data.text()
+    if not user_query:
+        user_query = random.randint(0, 20)
+
+    context.logger.info("User query: %s, Winning number: %s", user_query, success_number)
+
+    try:
+        context.logger.info("Calling PydanticAI roulette agent with query: '%s' and deps: %s", user_query, success_number)
+        
+        pydantic_ai_result = await roulette_agent.run(
+            user_query,
+            deps=success_number
+        )
+        context.logger.info("PydanticAI result output: %s", pydantic_ai_result.output)
+
+        return response.json({
+            "won": pydantic_ai_result.output, 
+            "details": "Bet processed by PydanticAI roulette agent.",
+            "user_query": user_query,
+            "success_number": success_number
+        })
+
+    except Exception as e:
+        context.logger.error("Error running PydanticAI agent: %s", e)
+        return response.json({"error": str(e)}, status_code=500)
+
+```
+
+## More advanced Pydantic AI agent - Bank support agent
+
+Taken from: https://ai.pydantic.dev/examples/bank-support/#example-code
+
+
+```python
+from dataclasses import dataclass
+from pydantic import BaseModel, Field
+from pydantic_ai import Agent, RunContext
+from agentuity import AgentRequest, AgentResponse, AgentContext
+
+class DatabaseConn:
+    """This is a fake database for example purposes.
+
+    In reality, you'd be connecting to an external database
+    (e.g. PostgreSQL) to get information about customers.
+    """
+
+    @classmethod
+    async def customer_name(cls, *, id: int) -> str | None:
+        if id == 123:
+            return "John"
+        # Return None or raise an error for other IDs if needed
+        return None
+
+    @classmethod
+    async def customer_balance(cls, *, id: int, include_pending: bool) -> float:
+        if (
+            id == 123
+        ):  # and include_pending: # Example always shows balance if id is 123
+            return 123.45
+        else:
+            # PydanticAI example raises ValueError, which is fine for tools
+            # if the LLM is expected to handle/retry based on it.
+            raise ValueError("Customer not found or query parameters invalid")
+
+
+@dataclass
+class SupportDependencies:
+    customer_id: int
+    db: DatabaseConn
+
+
+class SupportOutput(BaseModel):
+    support_advice: str = Field(description="Advice returned to the customer")
+    block_card: bool = Field(description="Whether to block their card or not")
+    risk: int = Field(description="Risk level of query", ge=0, le=10)
+
+
+# --- PydanticAI Agent Definition (from Example) ---
+
+support_agent = Agent(
+    "openai:gpt-4o",  # Or your preferred LLM
+    deps_type=SupportDependencies,
+    output_type=SupportOutput,
+    system_prompt=(
+        "You are a support agent in our bank, give the "
+        "customer support and judge the risk level of their query. "
+        "Reply using the customer's name."
+    ),
+)
+
+
+@support_agent.system_prompt
+async def add_customer_name(ctx: RunContext[SupportDependencies]) -> str:
+    customer_name = await ctx.deps.db.customer_name(id=ctx.deps.customer_id)
+    if customer_name:
+        return f"The customer's name is {customer_name!r}."
+    return "The customer's name could not be determined."
+
+
+@support_agent.tool
+async def customer_balance(
+    ctx: RunContext[SupportDependencies], include_pending: bool
+) -> str:
+    """Returns the customer's current account balance."""
+    try:
+        balance = await ctx.deps.db.customer_balance(
+            id=ctx.deps.customer_id,
+            include_pending=include_pending,
+        )
+        return f"${balance:.2f}"
+    except ValueError as e:
+        # Let the LLM know the tool failed and why
+        return f"Could not retrieve balance: {e}"
+
+
+# --- Agentuity Agent Entry Point ---
+async def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
+    context.logger.info("BankSupport agent initiated.")
+
+    user_query = await request.data.text()
+    if not user_query:
+        user_query = "What is my balance?"  # Default query
+        context.logger.info("No user query provided, using default: '%s'", user_query)
+
+    # For this example, we'll use a hardcoded customer ID and instantiate the DB.
+    # In a real scenario, customer_id might come from the request or session.
+    customer_id = 123
+    db_instance = DatabaseConn()
+
+    dependencies = SupportDependencies(customer_id=customer_id, db=db_instance)
+
+    context.logger.info(
+        "Calling PydanticAI support_agent with query: '%s' for customer_id: %s",
+        user_query,
+        customer_id,
+    )
+
+    try:
+        pydantic_ai_result = await support_agent.run(user_query, deps=dependencies)
+
+        output_data = pydantic_ai_result.output
+        context.logger.info("PydanticAI support_agent output: %s", output_data)
+
+        return response.json(output_data.model_dump())
+
+    except Exception as e:
+        context.logger.error(
+            "Error running PydanticAI support_agent: %s", e, exc_info=True
+        )
+        return response.json(
+            {
+                "error": str(e),
+                "details": "An unexpected error occurred in the BankSupport agent.",
+            },
+            status_code=500,
+        )
+
+```
+
+
+
+
+file: SDKs/python/frameworks.mdx
 meta: {
   "title": "Frameworks",
   "description": "Framework integration for the Agentuity Python SDK"
@@ -5018,7 +7056,7 @@ class MyCrew:
 ```
 
 
-file: ./content/SDKs/python/index.mdx
+file: SDKs/python/index.mdx
 meta: {
   "title": "Python SDK",
   "description": "Documentation for the Agentuity Python SDK"
@@ -5056,7 +7094,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 For more information, visit the [UV installation documentation](https://docs.astral.sh/uv/getting-started/installation/).
 
-
 ## Development
 
 You can start your project by running the following command:
@@ -5090,7 +7127,7 @@ Make sure you replace `agent_ID` with the ID of your Agent.
 - [API Reference](/SDKs/python/api-reference) - Explore the detailed API documentation
 
 
-file: ./content/SDKs/python/llm.mdx
+file: SDKs/python/llm.mdx
 meta: {
   "title": "LLM",
   "description": "LLM integration for the Agentuity Python SDK"
@@ -5124,7 +7161,7 @@ When any of the above SDKs are installed, the Agentuity Project will automatical
 
 
 
-file: ./content/Troubleshooting/error-codes/authentication.mdx
+file: Troubleshooting/error-codes/authentication.mdx
 meta: {
   "title": "Authentication Errors",
   "description": "Reference for authentication-related error codes (AUTH-XXX)"
@@ -5136,7 +7173,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
   This document is being worked on, information may change a lot over the next few weeks.
 </Callout>
 
-## AUTH-001: Invalid Credentials
+## AUTH-001
 
 **Error Message**: Invalid username or password
 
@@ -5147,7 +7184,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Reset your password if necessary
 - Check for any typos in your credentials
 
-## AUTH-002: Token Expired
+## AUTH-002
 
 **Error Message**: Authentication token has expired
 
@@ -5158,7 +7195,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Request a new authentication token
 - Check your system time is correct
 
-## AUTH-003: Invalid Token
+## AUTH-003
 
 **Error Message**: Invalid authentication token
 
@@ -5169,15 +7206,15 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Verify the token format
 - Check token transmission process
 
-[Content coming soon - Additional authentication error codes]    
+[Content coming soon - Additional authentication error codes]        
 
-file: ./content/Troubleshooting/error-codes/cli.mdx
+file: Troubleshooting/error-codes/cli.mdx
 meta: {
   "title": "CLI Errors",
   "description": "Reference for CLI-related error codes (CLI-XXXX)"
 }
 
-## CLI-0001: Failed to Delete Agents
+## CLI-0001
 
 **Error Message**: Failed to delete agents
 
@@ -5189,7 +7226,7 @@ meta: {
 - Try deleting agents one by one
 - Check the logs for more specific error details
 
-## CLI-0002: Failed to Create Project
+## CLI-0002
 
 **Error Message**: Failed to create project
 
@@ -5201,7 +7238,7 @@ meta: {
 - Ensure all required project parameters are valid
 - Check the logs for more specific error details
 
-## CLI-0003: Unable to Authenticate User
+## CLI-0003
 
 **Error Message**: Unable to authenticate user
 
@@ -5213,7 +7250,7 @@ meta: {
 - Try logging in again
 - Ensure your account has not been locked or disabled
 
-## CLI-0004: Environment Variables Not Set
+## CLI-0004
 
 **Error Message**: Environment variables not set
 
@@ -5225,7 +7262,7 @@ meta: {
 - Verify the environment variables have the correct values
 - Consider using a .env file for local development
 
-## CLI-0005: API Request Failed
+## CLI-0005
 
 **Error Message**: API request failed
 
@@ -5237,7 +7274,7 @@ meta: {
 - Ensure your authentication token is valid
 - Check the logs for more specific error details
 
-## CLI-0006: Invalid Configuration
+## CLI-0006
 
 **Error Message**: Invalid configuration
 
@@ -5249,7 +7286,7 @@ meta: {
 - Ensure all required fields are present
 - Validate the values against the expected format
 
-## CLI-0007: Failed to Save Project
+## CLI-0007
 
 **Error Message**: Failed to save project
 
@@ -5261,7 +7298,7 @@ meta: {
 - Ensure all project parameters are valid
 - Check the logs for more specific error details
 
-## CLI-0008: Failed to Deploy Project
+## CLI-0008
 
 **Error Message**: Failed to deploy project
 
@@ -5273,7 +7310,7 @@ meta: {
 - Ensure all dependencies are available
 - Check the logs for more specific error details
 
-## CLI-0009: Failed to Upload Project
+## CLI-0009
 
 **Error Message**: Failed to upload project
 
@@ -5285,7 +7322,7 @@ meta: {
 - Ensure the project files are not too large
 - Check the logs for more specific error details
 
-## CLI-0010: Failed to Parse Environment File
+## CLI-0010
 
 **Error Message**: Failed to parse environment file
 
@@ -5297,7 +7334,7 @@ meta: {
 - Verify the file format is correct
 - Remove any invalid characters or formatting
 
-## CLI-0011: Invalid Command Flag Error
+## CLI-0011
 
 **Error Message**: Invalid command flag error
 
@@ -5309,7 +7346,7 @@ meta: {
 - Ensure flags are compatible with each other
 - Use the help command for correct usage
 
-## CLI-0012: Failed to List Files and Directories
+## CLI-0012
 
 **Error Message**: Failed to list files and directories
 
@@ -5321,7 +7358,7 @@ meta: {
 - Ensure the path is correctly formatted
 - Check for any file system errors
 
-## CLI-0013: Failed to Write Configuration File
+## CLI-0013
 
 **Error Message**: Failed to write configuration file
 
@@ -5333,7 +7370,7 @@ meta: {
 - Ensure there is enough disk space
 - Check if the file is locked by another process
 
-## CLI-0014: Failed to Read Configuration File
+## CLI-0014
 
 **Error Message**: Failed to read configuration file
 
@@ -5345,7 +7382,7 @@ meta: {
 - Ensure the file is not corrupted
 - Check if the file format is correct
 
-## CLI-0015: Failed to Create Directory
+## CLI-0015
 
 **Error Message**: Failed to create directory
 
@@ -5357,7 +7394,7 @@ meta: {
 - Ensure there is enough disk space
 - Check if a file with the same name already exists
 
-## CLI-0016: Failed to Create Temporary File
+## CLI-0016
 
 **Error Message**: Failed to create temporary file
 
@@ -5369,7 +7406,7 @@ meta: {
 - Verify the temp directory exists
 - Check system temporary file limits
 
-## CLI-0017: Failed to Create Zip File
+## CLI-0017
 
 **Error Message**: Failed to create zip file
 
@@ -5381,7 +7418,7 @@ meta: {
 - Verify all files to be zipped exist and are readable
 - Check if the zip utility is installed correctly
 
-## CLI-0018: Failed to Open File
+## CLI-0018
 
 **Error Message**: Failed to open file
 
@@ -5393,7 +7430,7 @@ meta: {
 - Ensure the file is not locked by another process
 - Check if the file path is correct
 
-## CLI-0019: Failed to Load Templates
+## CLI-0019
 
 **Error Message**: Failed to load templates
 
@@ -5405,7 +7442,7 @@ meta: {
 - Ensure the template format is correct
 - Check if the template path is correct
 
-## CLI-0020: Failed to Authenticate with OTEL Server
+## CLI-0020
 
 **Error Message**: Failed to authenticate with otel server
 
@@ -5417,7 +7454,7 @@ meta: {
 - Ensure the OTEL server URL is correct
 - Check your network connection to the OTEL server
 
-## CLI-0021: Failed to Install Dependencies
+## CLI-0021
 
 **Error Message**: Failed to install dependencies
 
@@ -5429,7 +7466,7 @@ meta: {
 - Ensure the package manager is working correctly
 - Check for conflicts with existing packages
 
-## CLI-0022: Error Importing Project
+## CLI-0022
 
 **Error Message**: Error importing project
 
@@ -5441,7 +7478,7 @@ meta: {
 - Check if the project is compatible with the current CLI version
 - Verify you have the necessary permissions to import the project
 
-## CLI-0023: Error Encrypting Deployment Zip File
+## CLI-0023
 
 **Error Message**: Error encrypting deployment zip file
 
@@ -5454,7 +7491,7 @@ meta: {
 - Check if the encryption library is working correctly
 
 
-file: ./content/Troubleshooting/error-codes/datastores.mdx
+file: Troubleshooting/error-codes/datastores.mdx
 meta: {
   "title": "Datastore Errors",
   "description": "Reference for datastore-related error codes (DATA-XXX)"
@@ -5466,7 +7503,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
   This document is being worked on, information may change a lot over the next few weeks.
 </Callout>
 
-## DATA-001: Datastore Not Found
+## DATA-001
 
 **Error Message**: Datastore not found
 
@@ -5477,7 +7514,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Check if the datastore still exists in the project
 - Contact support if you believe this is an error
 
-## DATA-002: Invalid Datastore Configuration
+## DATA-002
 
 **Error Message**: Invalid datastore configuration
 
@@ -5488,7 +7525,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Ensure all required fields are provided
 - Validate the configuration format
 
-## DATA-003: Datastore Connection Error
+## DATA-003
 
 **Error Message**: Unable to connect to datastore
 
@@ -5499,7 +7536,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Verify the datastore is running and accessible
 - Check network connectivity
 
-## DATA-004: Datastore Capacity Exceeded
+## DATA-004
 
 **Error Message**: Datastore capacity exceeded
 
@@ -5510,7 +7547,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Delete unnecessary data
 - Upgrade storage capacity
 
-## DATA-005: Invalid Query
+## DATA-005
 
 **Error Message**: Invalid datastore query
 
@@ -5519,9 +7556,9 @@ import { Callout } from 'fumadocs-ui/components/callout';
 **Solution**: 
 - Check the query syntax
 - Verify parameter types and values
-- Review the query documentation    
+- Review the query documentation                                        
 
-file: ./content/Troubleshooting/error-codes/index.mdx
+file: Troubleshooting/error-codes/index.mdx
 meta: {
   "title": "Error Codes",
   "description": "Complete reference for all Agentuity error codes and their solutions"
@@ -5553,7 +7590,7 @@ This section provides detailed information about all error codes you might encou
 
 [Content coming soon - Common patterns in error codes and general troubleshooting approaches]        
 
-file: ./content/Troubleshooting/error-codes/integration.mdx
+file: Troubleshooting/error-codes/integration.mdx
 meta: {
   "title": "Integration Errors",
   "description": "Reference for integration-related error codes (INT-XXX)"
@@ -5565,7 +7602,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
   This document is being worked on, information may change a lot over the next few weeks.
 </Callout>
 
-## INT-001: Integration Not Found
+## INT-001
 
 **Error Message**: Integration not found
 
@@ -5576,7 +7613,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Check if the integration is still configured
 - Set up the integration again if necessary
 
-## INT-002: Invalid Webhook URL
+## INT-002
 
 **Error Message**: Invalid webhook URL
 
@@ -5587,7 +7624,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Ensure the endpoint is publicly accessible
 - Check URL formatting and protocol
 
-## INT-003: Integration Authentication Failed
+## INT-003
 
 **Error Message**: Integration authentication failed
 
@@ -5598,7 +7635,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Verify API keys or tokens
 - Ensure the integration service is available
 
-## INT-004: Integration Timeout
+## INT-004
 
 **Error Message**: Integration request timeout
 
@@ -5609,7 +7646,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Verify network connectivity
 - Adjust timeout settings if possible
 
-## INT-005: Invalid Integration Configuration
+## INT-005
 
 **Error Message**: Invalid integration configuration
 
@@ -5618,9 +7655,9 @@ import { Callout } from 'fumadocs-ui/components/callout';
 **Solution**: 
 - Review integration settings
 - Complete all required configuration fields
-- Check integration documentation    
+- Check integration documentation        
 
-file: ./content/Troubleshooting/error-codes/projects.mdx
+file: Troubleshooting/error-codes/projects.mdx
 meta: {
   "title": "Project Errors",
   "description": "Reference for project-related error codes (PROJ-XXX)"
@@ -5632,7 +7669,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
   This document is being worked on, information may change a lot over the next few weeks.
 </Callout>
 
-## PROJ-001: Project Not Found
+## PROJ-001
 
 **Error Message**: Project not found
 
@@ -5643,7 +7680,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Check if you have access to the project
 - Contact support if you believe this is an error
 
-## PROJ-002: Invalid Project Configuration
+## PROJ-002
 
 **Error Message**: Invalid project configuration
 
@@ -5654,7 +7691,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Ensure all required fields are provided
 - Validate the configuration format
 
-## PROJ-003: Project Limit Exceeded
+## PROJ-003
 
 **Error Message**: Project limit exceeded
 
@@ -5665,7 +7702,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Delete unused projects
 - Upgrade your subscription plan
 
-## PROJ-004: Invalid Project Name
+## PROJ-004
 
 **Error Message**: Invalid project name
 
@@ -5674,9 +7711,9 @@ import { Callout } from 'fumadocs-ui/components/callout';
 **Solution**: 
 - Use only alphanumeric characters, hyphens, and underscores
 - Keep the name between 3-64 characters
-- Remove any special characters    
+- Remove any special characters        
 
-file: ./content/Troubleshooting/error-codes/system.mdx
+file: Troubleshooting/error-codes/system.mdx
 meta: {
   "title": "System Errors",
   "description": "Reference for system-related error codes (SYS-XXX)"
@@ -5688,7 +7725,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
   This document is being worked on, information may change a lot over the next few weeks.
 </Callout>
 
-## SYS-001: Internal Server Error
+## SYS-001
 
 **Error Message**: Internal server error
 
@@ -5699,7 +7736,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Check system status page
 - Contact support if the issue persists
 
-## SYS-002: Rate Limit Exceeded
+## SYS-002
 
 **Error Message**: Rate limit exceeded
 
@@ -5710,7 +7747,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Implement request throttling
 - Review rate limit documentation
 
-## SYS-003: Service Unavailable
+## SYS-003
 
 **Error Message**: Service temporarily unavailable
 
@@ -5721,7 +7758,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Wait and retry later
 - Subscribe to status updates
 
-## SYS-004: Invalid API Version
+## SYS-004
 
 **Error Message**: Invalid API version
 
@@ -5732,7 +7769,7 @@ import { Callout } from 'fumadocs-ui/components/callout';
 - Check API version compatibility
 - Review API migration guide
 
-## SYS-005: Resource Conflict
+## SYS-005
 
 **Error Message**: Resource conflict
 
@@ -5741,4 +7778,383 @@ import { Callout } from 'fumadocs-ui/components/callout';
 **Solution**: 
 - Implement proper locking mechanisms
 - Retry the operation
-- Handle conflicts in your application    
+- Handle conflicts in your application                                        
+
+file: docs/SDKs/python/agent-to-agent.mdx
+meta: {
+  "title": "Agent-to-Agent Communication",
+  "description": "Enable communication between agents in the Agentuity Python SDK"
+}
+
+# Agent-to-Agent Communication
+
+The Agentuity Python SDK enables seamless communication between agents, whether they are running locally or in different environments.
+
+## Local Agent Communication
+
+You can easily communicate between agents running in the same process:
+
+```python
+async def run(request, response, context):
+    # Call another agent by ID
+    return await response.handoff({"id": "other_agent_id"})
+    
+    # Or call by name
+    # return response.handoff({"name": "OtherAgentName"})
+```
+
+## Remote Agent Communication
+
+The SDK now supports communication with agents running in different environments:
+
+```python
+async def run(request, response, context):
+    # Resolve an agent (local or remote)
+    agent = context.get_agent({"id": "remote_agent_id"})
+    
+    # Create data for the remote agent
+    from agentuity.server.data import Data, StringStreamReader
+    data = Data("text/plain", StringStreamReader("Hello from another agent"))
+    
+    # Call the remote agent
+    result = await agent.run(data, metadata={"key": "value"})
+    
+    # Process the response
+    text = await result.data.text()
+    return response.text(f"Got response: {text}")
+```
+
+## Agent Resolution
+
+The `AgentContext` provides methods for resolving agents, whether they are local or remote:
+
+```python
+async def run(request, response, context):
+    # Resolve by ID
+    agent = context.get_agent({"id": "agent_id"})
+    
+    # Resolve by name
+    agent = context.get_agent({"name": "AgentName"})
+    
+    # Resolve by name in a specific project
+    agent = context.get_agent({"name": "AgentName", "projectId": "proj_123"})
+    
+    # Call the resolved agent
+    result = await agent.run(request.data)
+    return result
+```
+
+## Agent Context
+
+The `AgentContext` class provides methods for agent resolution and management:
+
+```python
+async def run(request, response, context):
+    # Get agent information
+    current_agent = context.agent
+    all_agents = context.agents
+    
+    # Get the current scope (local or remote)
+    scope = context.scope
+    
+    # Get the current run ID
+    run_id = context.runId
+    
+    # Use key-value store
+    await context.kv.set("key", "value")
+    value = await context.kv.get("key")
+    
+    # Use vector store
+    await context.vector.add("collection", "id", [0.1, 0.2, 0.3], {"metadata": "value"})
+    results = await context.vector.search("collection", [0.1, 0.2, 0.3], 5)
+    
+    return response.text("Agent context example")
+```
+
+
+file: docs/SDKs/python/async-api.mdx
+meta: {
+  "title": "Async API",
+  "description": "Working with Asynchronous Agents in the Agentuity Python SDK"
+}
+
+# Async API
+
+The Agentuity Python SDK now supports fully asynchronous operations, enabling more efficient handling of concurrent requests and streaming responses.
+
+## Agent Request
+
+The `AgentRequest` class now uses async patterns to handle incoming data:
+
+```python
+from agentuity.server import AgentRequest
+
+async def run(request: AgentRequest, response, context):
+    # Access request data asynchronously
+    data = await request.data.text()
+    
+    # Access request metadata
+    metadata = request.metadata
+    
+    # Get the trigger type
+    trigger = request.trigger
+    
+    # Return a response
+    return response.text(f"Received: {data}")
+```
+
+## Agent Response
+
+The `AgentResponse` class supports async streaming and iteration:
+
+```python
+from agentuity.server import AgentResponse
+
+async def run(request, response: AgentResponse, context):
+    # Stream response data
+    async def data_generator():
+        for i in range(5):
+            yield f"Data chunk {i}\n"
+    
+    # Return a streaming response
+    return response.stream(data_generator(), contentType="text/plain")
+```
+
+### Async Iteration
+
+Responses can be iterated over asynchronously:
+
+```python
+async def process_response(response):
+    async for chunk in response:
+        print(chunk)
+```
+
+## Data Streaming
+
+The SDK provides several specialized stream readers for different data types:
+
+```python
+from agentuity.server.data import (
+    StringStreamReader,
+    BytesStreamReader,
+    EmptyDataReader
+)
+
+# Create a stream from a string
+string_stream = StringStreamReader("Hello, world!")
+
+# Create a stream from bytes
+bytes_stream = BytesStreamReader(b"Binary data")
+
+# Create an empty stream
+empty_stream = EmptyDataReader()
+```
+
+## Performance Benefits
+
+The async implementation provides several advantages:
+
+- Efficient handling of concurrent requests
+- Streaming of large data payloads without blocking
+- Reduced memory usage for processing large files
+- Better integration with modern async Python applications
+
+
+file: docs/SDKs/python/data-handling.mdx
+meta: {
+  "title": "Data Handling",
+  "description": "Working with various data types in the Agentuity Python SDK"
+}
+
+# Data Handling
+
+The Agentuity Python SDK provides a flexible system for working with different types of data, from text and JSON to binary formats like images and audio.
+
+## The Data Class
+
+The `Data` class serves as a container for all types of content:
+
+```python
+from agentuity.server.data import Data, StringStreamReader, BytesStreamReader
+
+# Create a text Data object
+text_data = Data("text/plain", StringStreamReader("Hello, world!"))
+
+# Create a binary Data object
+binary_data = Data("application/octet-stream", BytesStreamReader(b"\x00\x01\x02\x03"))
+```
+
+## Accessing Data Content
+
+Data content can be accessed in various formats:
+
+```python
+async def process_data(data: Data):
+    # Get as text
+    text = await data.text()
+    
+    # Get as JSON
+    json_data = await data.json()
+    
+    # Get as binary
+    binary = await data.binary()
+    
+    # Get as base64 encoded string
+    base64_str = await data.base64()
+    
+    # Access as a stream
+    stream = await data.stream()
+    async for chunk in stream:
+        process_chunk(chunk)
+```
+
+## Working with Responses
+
+The `AgentResponse` class provides methods for various content types:
+
+```python
+async def run(request, response, context):
+    # Text response
+    return response.text("Hello, world!")
+    
+    # JSON response
+    return response.json({"message": "Hello, world!"})
+    
+    # Markdown response
+    return response.markdown("# Hello, world!")
+    
+    # Binary response
+    return response.binary(b"\x00\x01\x02\x03", "application/octet-stream")
+```
+
+## Media Type Helpers
+
+The SDK includes helpers for common media types:
+
+```python
+async def run(request, response, context):
+    # Image responses
+    with open("image.png", "rb") as f:
+        image_data = f.read()
+        return response.png(image_data)
+    
+    # Other image formats
+    return response.jpeg(jpeg_data)
+    return response.gif(gif_data)
+    return response.webp(webp_data)
+    
+    # Document formats
+    return response.pdf(pdf_data)
+    
+    # Audio/Video formats
+    return response.mp3(mp3_data)
+    return response.mp4(mp4_data)
+    return response.wav(wav_data)
+    return response.ogg(ogg_data)
+    return response.webm(webm_data)
+    return response.m4a(m4a_data)
+```
+
+## Streaming Data
+
+For large responses or real-time data, use streaming:
+
+```python
+async def run(request, response, context):
+    # Stream data from a generator
+    async def generator():
+        for i in range(10):
+            yield f"Item {i}\n"
+    
+    # Return the stream
+    return response.stream(generator(), contentType="text/plain")
+    
+    # Transform items during streaming
+    def transform(item):
+        return f"Transformed: {item}"
+    
+    return response.stream(generator(), transform=transform)
+    
+    # Stream responses from another agent
+    other_response = await context.get_agent("other_agent").run(request.data)
+    return response.stream(other_response)
+```
+
+
+file: docs/SDKs/python/index.mdx
+meta: {
+  "title": "Python SDK",
+  "description": "Agentuity Python SDK Documentation"
+}
+
+# Agentuity Python SDK
+
+The Agentuity Python SDK is a powerful toolkit for building, deploying, and managing AI agents in Python environments. This SDK provides developers with a comprehensive set of tools to create intelligent agents that can process various types of content, communicate with each other, and integrate with external systems.
+
+## Prerequisites
+
+- [Python](https://www.python.org/) (3.10 or 3.11)
+- [uv](https://docs.astral.sh/uv/) (latest version recommended)
+
+## Installation
+
+First, install the Agentuity CLI:
+
+```bash
+curl -fsS https://agentuity.sh | sh
+```
+
+Then create a new project:
+
+```bash
+agentuity new
+```
+
+This will create a new project with a default `agentuity.yaml` configuration file and agent structure.
+
+## Creating Your First Agent
+
+Navigate to the agent file created by the CLI:
+
+```bash
+cd agents/myfirstagent
+```
+
+Edit the `agent.py` file and add the following code:
+
+```python
+from agentuity.server import AgentRequest, AgentResponse, AgentContext
+
+def run(request: AgentRequest, response: AgentResponse, context: AgentContext):
+    return response.text("Hello, world")
+```
+
+## Running Your Agent
+
+Start the local development server:
+
+```bash
+agentuity dev
+```
+
+When the server starts, you'll see a local URL in the console output. Open this URL in your browser to access the Agentuity development UI, where you can test your agent and view the responses.
+
+## Key Features
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', padding: '1rem' }}>
+  <Card href="/docs/SDKs/python/async-api">
+    <h3>Async API</h3>
+    <p>Work with fully asynchronous agents</p>
+  </Card>
+  
+  <Card href="/docs/SDKs/python/agent-to-agent">
+    <h3>Agent-to-Agent Communication</h3>
+    <p>Enable communication between local and remote agents</p>
+  </Card>
+  
+  <Card href="/docs/SDKs/python/data-handling">
+    <h3>Data Handling</h3>
+    <p>Work with various data types and streaming capabilities</p>
+  </Card>
+</div>

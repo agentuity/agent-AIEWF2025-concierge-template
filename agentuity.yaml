@@ -8,11 +8,11 @@
 # The version semver range required to run this project
 version: '>=0.0.74'
 # The ID of the project which is automatically generated
-project_id: proj_d8046cfb6e20b4d8e61357752a3373c2
+project_id: proj_dfb801d9070a1a59e2ece9e03ef1be6a
 # The name of the project which is editable
-name: MiamiConcierge
+name: AIEWF2025-Concierge
 # The description of the project which is editable
-description: A set of agents to help visitors in Miami
+description: A set of agents to help visitors in San Francisco
 # The development configuration for the project
 development:
   # The port to run the development server on which can be overridden by setting the PORT environment variable
@@ -68,17 +68,17 @@ bundler:
 # The agents that are part of this project
 agents:
   - # The ID of the Agent which is automatically generated
-    id: agent_903b92b7750eb9456a37962712606a54
+    id: agent_d9cf3e86e40ca427c4c9ec03d9a479a6
     # The name of the Agent which is editable
     name: ConciergeHost
     # The description of the Agent which is editable
     description: The main orchestor of agents
-  - id: agent_8785b1eb0490f48722329bd8c258c06e
+  - id: agent_d95fd4b47dff415f4d64cf8698737f5d
     name: ConferenceExpert
-    description: Specializes in React Miami conference knowledge, tracks schedule, sessions, speakers, and provides recommendations
-  - id: agent_1103150fd090047e82fa86c1af614b81
-    name: MiamiLocalGuide
-    description: Miami-specific recommendations for food, entertainment, transportation with weather awareness and local tips
-  - id: agent_2f779b58c168ef0af9750df0572c4a1d
+    description: Specializes in AI Engineer World Fair 2025 conference knowledge, tracks schedule, sessions, speakers, and provides recommendations
+  - id: agent_53d334d20c06b2e45dfe85558cbadf72
+    name: SanFranLocalGuide
+    description: San Fran specific recommendations for food, entertainment, transportation with weather awareness and local tips
+  - id: agent_ba62b7eef4191a29af582d7e6d005a82
     name: DeveloperExperience
     description: Helps developers understand the system, explains architecture, and provides guidance on extending the platform

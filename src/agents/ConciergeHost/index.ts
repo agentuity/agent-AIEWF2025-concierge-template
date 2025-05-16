@@ -10,7 +10,7 @@ import { anthropic } from "@ai-sdk/anthropic";
 import { UserIntentSchema, type ConversationRecord } from "../../lib/types";
 
 const overallSystemPrompt = `
-You are a Miami concierge / host helping developers navigate Miami, the React Miami Conference, 
+You are a San Francisco concierge / host helping developers navigate San Francisco, the AI Engineer World Fair 2025 conference, 
 and developer related when it comes to building AI agents on top of Agentuity.
 `;
 
@@ -45,7 +45,7 @@ export default async function ConciergeHost(
 	// Get the past conversation from the KV store for context.
 	const pastConversation = await ctx.kv.get(
 		"concierge-history",
-		"react-miami-2025-dev-mode",
+		"ai-engineer-world-fair-2025-dev-mode",
 	);
 	if (pastConversation.exists) {
 		const pastConversationData = await pastConversation.data.object<string[]>();
@@ -61,9 +61,9 @@ to ensure we don't do that - so that we can handle the user's intent in a struct
 the right agent for the use case.
 Take the user's prompt and break these down according to the desired schema indicated.
 The things you can help with by delegating to the right agent types are:
-- Anytying related to Miami, surrounding areas, food, etc. (assume if a user is asking about 
-things like food, directions, etc. that they are looking for a local guide in Miami)
-- The React Miami Conference
+- Anytying related to San Francisco, surrounding areas, food, etc. (assume if a user is asking about 
+things like food, directions, etc. that they are looking for a local guide in San Francisco)
+- The AI Engineer World Fair 2025 conference
 - Developer related topics when it comes to building AI agents on top of Agentuity
 `,
 		schema: UserIntentSchema,
@@ -92,8 +92,8 @@ things like food, directions, etc. that they are looking for a local guide in Mi
 	`;
 	let agentResponse: string | undefined;
 	switch (agentType) {
-		case "miami": {
-			agentName = "MiamiLocalGuide";
+		case "sanfrancisco": {
+			agentName = "SanFranLocalGuide";
 			break;
 		}
 		case "conference": {
@@ -118,7 +118,7 @@ things like food, directions, etc. that they are looking for a local guide in Mi
 	} else {
 		agentResponse = `
 			There wasn't a specific area I can help with in your request.  I can help with things 
-			related to Miami, the React Miami Conference, and developer related topics 
+			related to San Francisco, the AI Engineer World Fair 2025 conference, and developer related topics 
 			when it comes to building AI agents on top of Agentuity.
 		`;
 	}
@@ -130,26 +130,26 @@ things like food, directions, etc. that they are looking for a local guide in Mi
 
 	// In a prod app, you'd probably have an ID to identify the conversation.
 	// For now, we're just using a static ID.
-	await ctx.kv.set("concierge-history", "react-miami-2025-dev-mode", history);
+	await ctx.kv.set("concierge-history", "ai-engineer-world-fair-2025-dev-mode", history);
 
 	return resp.text(agentResponse);
 }
 
 export const welcome = (): AgentWelcomeResult => {
 	return {
-		welcome: `# Welcome to the React Miami 2025 Concierge
+		welcome: `# Welcome to the AI Engineer World Fair 2025 Concierge
 
 How can I help you today?  I can help you with:
 
-- Miami information
-- React Miami Conference information
+- San Francisco information
+- AI Engineer World Fair 2025 information
 - Getting started with Agentuity
 
 For example:
 
-> Where should I go for dinner in Miami, tonight?
+> Where should I go for dinner in San Francisco, tonight?
 
-> What sessions about React hooks are happening today?
+> What sessions about AI are happening today?
 
 > Tell me more about [Speaker Name]'s background
 
@@ -159,14 +159,14 @@ For example:
 
 > What is Agentuity all about?
 
-> What's the weather in Miami today?`,
+> What's the weather in San Francisco today?`,
 		prompts: [
 			{
-				data: "Where should I go for dinner in Miami, tonight?",
+				data: "Where should I go for dinner in San Francisco, tonight?",
 				contentType: "text/plain",
 			},
 			{
-				data: "What sessions about React hooks are happening today?",
+				data: "What sessions about AI are happening today?",
 				contentType: "text/plain",
 			},
 			{

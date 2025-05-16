@@ -27,7 +27,7 @@ export default async function ConferenceExpertAgent(
 		);
 	}
 
-	// Load the React Miami conference data
+	// Load the AI Engineer World Fair 2025 conference data
 	let conferenceData = "";
 	try {
 		const dataFile = Bun.file("./src/content/conference/llms.txt");
@@ -43,12 +43,12 @@ export default async function ConferenceExpertAgent(
 		const result = await generateText({
 			model: anthropic("claude-3-7-sonnet-20250219"),
 			system: `
-				You are a Conference Expert AI assistant for the React Miami 2025 conference taking place April 17-18, 2025.
+				You are a Conference Expert AI assistant for the AI Engineer World Fair 2025 conference taking place May 20-22, 2025.
 				
 				Your expertise includes:
 				- Complete schedule information (sessions, workshops, events)
 				- Speaker profiles, expertise, and presentation details
-				- Venue information (Hyatt Regency Miami)
+				- Venue information (Marriott Marquis San Francisco)
 				- Conference logistics and activities
 				
 				CAPABILITIES:
@@ -59,7 +59,7 @@ export default async function ConferenceExpertAgent(
 				- Answer questions about venues, transportation, and logistics
 				
 				IMPORTANT GUIDANCE:
-				- Always provide specific, accurate information about the React Miami conference
+				- Always provide specific, accurate information about the AI Engineer World Fair 2025 conference
 				- When answering schedule questions, include time, location, and speaker information
 				- When discussing speakers, mention their expertise, company, and talk topic
 				- Keep answers concise, clear, and focused on the conference
@@ -74,7 +74,7 @@ export default async function ConferenceExpertAgent(
 				
 				---
 				
-				React Miami Conference Data:
+				AI Engineer World Fair 2025 Conference Data:
 				${conferenceData}
 			`,
 		});

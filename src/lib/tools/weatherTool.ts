@@ -30,19 +30,19 @@ interface NwsForecastResponse {
 // Define the weather tool using NWS API
 export const weatherTool = tool({
 	description:
-		"Get the current weather forecast for a specific location in or near Miami.",
+		"Get the current weather forecast for a specific location in or near San Francisco.",
 	parameters: z.object({
 		location: z
 			.string()
 			.describe(
-				"The location in Miami (e.g., Miami Beach, Downtown Miami) to get the weather forecast for",
+				"The location in San Francisco (e.g., San Francisco, Downtown San Francisco) to get the weather forecast for",
 			),
 	}),
 	execute: async ({ location }) => {
-		// Hardcoded coordinates for central Miami (replace with geocoding later)
-		const latitude = 25.76;
-		const longitude = -80.19;
-		const userAgent = "MiamiLocalGuide/1.0 (Contact: your-email@example.com)"; // NWS requires a User-Agent
+		// Hardcoded coordinates for central San Francisco (replace with geocoding later)
+		const latitude = 37.77;
+		const longitude = -122.42;
+		const userAgent = "SanFranLocalGuide/1.0 (Contact: your-email@example.com)"; // NWS requires a User-Agent
 
 		try {
 			// Step 1: Get the grid points from coordinates
@@ -103,7 +103,7 @@ export const weatherTool = tool({
 
 			// Return a simplified forecast object
 			return {
-				location: `Miami area (near ${latitude}, ${longitude})`,
+				location: `San Francisco area (near ${latitude}, ${longitude})`,
 				temperature: currentForecast.temperature,
 				unit: currentForecast.temperatureUnit,
 				forecast: currentForecast.shortForecast,

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export interface UserIntent {
-	agentType: "miami" | "conference" | "agentuity" | "other";
+	agentType: "sanfrancisco" | "conference" | "agentuity" | "other";
 	tags: string[];
 	likelyIntent: string;
 	negativeIntent: string;
@@ -9,7 +9,7 @@ export interface UserIntent {
 }
 
 export const UserIntentSchema = z.object({
-	agentType: z.enum(["miami", "conference", "agentuity"]),
+	agentType: z.enum(["sanfrancisco", "conference", "agentuity"]),
 	tags: z.array(z.string()),
 	likelyIntent: z.string(),
 	negativeIntent: z.string(),

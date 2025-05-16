@@ -1,6 +1,6 @@
 # Developer Experience Agent (Meta)
 
-This agent helps developers understand and extend the Miami Concierge system.
+This agent helps developers understand and extend the San Francisco Concierge system.
 
 ## Capabilities
 * Helps developers understand how the agent system works

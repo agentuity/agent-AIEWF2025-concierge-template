@@ -1,6 +1,6 @@
 # Conference Expert Agent
 
-This agent specializes in React Miami conference knowledge and information.
+This agent specializes in AI Engineer World Fair 2025 conference knowledge and information.
 
 ## Capabilities
 * Tracks schedule, sessions, workshops, and venue information
