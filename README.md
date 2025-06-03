@@ -8,9 +8,9 @@
 </div>
 </div>
 
-# The AI Engineer World Fair 2025 Example
-
 [![Deploy with Agentuity](https://app.agentuity.com/img/deploy.svg)](https://app.agentuity.com/deploy)
+
+# The AI Engineer World Fair 2025 Example
 
 This repository contains a template for building a concierge-style agents using Agentuity, showcasing integration with Agentuity's agent platform. This template demonstrates how to create a San Francisco-themed concierge application that can help users with recommendations, bookings, and local information.
 
